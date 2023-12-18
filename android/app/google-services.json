@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1006275596786",
+    "project_id": "dribbox-93758",
+    "storage_bucket": "dribbox-93758.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1006275596786:android:052f3e02c2e5c5ecb31b6b",
+        "android_client_info": {
+          "package_name": "com.example.dribbox"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDM5d79t1uV9TNciCs4PJ69-5vFneHLv4A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
