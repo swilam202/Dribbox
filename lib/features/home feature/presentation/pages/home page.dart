@@ -10,11 +10,24 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final List lois = [
       const HomePageFolder(
-          color: Colors.green, title: 'Mobile apps', icon: Icons.android),
+        color: Colors.green,
+        title: 'Mobile apps',
+        icon: Icons.android,
+      ),
+      const HomePageFolder(
+        color: Colors.indigo,
+        title: 'Programming',
+        icon: Icons.code,
+      ),
       const HomePageFolder(
         color: Colors.amber,
         title: 'Files',
         icon: Icons.file_copy_outlined,
+      ),
+      const HomePageFolder(
+        color: Colors.orange,
+        title: 'Audio',
+        icon: Icons.music_note,
       ),
       const HomePageFolder(
         color: Colors.blue,
@@ -26,49 +39,65 @@ class HomePage extends StatelessWidget {
         title: 'Images',
         icon: Icons.image,
       ),
+      const HomePageFolder(
+        color: Colors.teal,
+        title: 'Archive',
+        icon: Icons.archive_rounded,
+      ),
+      const HomePageFolder(
+        color: Colors.grey,
+        title: 'Other',
+        icon: Icons.file_present,
+      ),
     ];
     return Scaffold(
       body: SafeArea(
         child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 30),
-          physics: BouncingScrollPhysics(),
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          physics: const BouncingScrollPhysics(),
           children: [
-            SizedBox(height: 20),
-            Text('Your dribbbox',style: StyleManager.bigTextStyle(fontWeight: FontWeightManager.semiBoldWeight,fontSize: 24,),),
-            SizedBox(height: 35),
+            const SizedBox(height: 20),
+            Text(
+              'Your dribBox',
+              style: StyleManager.bigTextStyle(
+                fontWeight: FontWeightManager.semiBoldWeight,
+                fontSize: 24,
+              ),
+            ),
+            const SizedBox(height: 35),
             Row(
               children: [
                 DropdownButton(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  value: 1,
-                  onChanged: (val){},
-                  icon: Icon(Icons.arrow_drop_down_sharp),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  value: 2,
+                  onChanged: (val) {},
+                  icon: const Icon(Icons.arrow_drop_down_sharp),
                   items: [
                     DropdownMenuItem(
                       value: 1,
                       child: Text(
                         'All',
                         style: StyleManager.bigTextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeightManager.normalWeight,),
+                          fontSize: 16,
+                          fontWeight: FontWeightManager.normalWeight,
+                        ),
                       ),
                     ),
-
                     DropdownMenuItem(
                       value: 2,
                       child: Text(
                         'Folders',
                         style: StyleManager.bigTextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeightManager.normalWeight,),
+                          fontSize: 16,
+                          fontWeight: FontWeightManager.normalWeight,
+                        ),
                       ),
                     ),
                   ],
-
                 ),
               ],
             ),
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
             GridView.builder(
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -82,6 +111,7 @@ class HomePage extends StatelessWidget {
                 return lois[index];
               },
             ),
+            const SizedBox(height: 20),
           ],
         ),
       ),

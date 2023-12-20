@@ -17,41 +17,45 @@ class HomePageFolder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-
-      decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            icon,
-            color: color,
-            size: 35,
-          ),
-          SizedBox(height: 7),
-          Text(
-            title,
-            style: StyleManager.smallTextStyle(
-              fontSize: 15,
+    return InkWell(
+      borderRadius: BorderRadius.circular(20),
+      splashColor: color.withOpacity(0.05),
+      onTap: () {},
+      child: Container(
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: color.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
               color: color,
-              fontWeight: FontWeightManager.semiBoldWeight,
+              size: 35,
             ),
-          ),
-          SizedBox(height: 3),
-          Text(
-            'December 20.2020',
-            style: StyleManager.smallTextStyle(
-              fontSize: 10,
-              color: color.withOpacity(0.9),
-              fontWeight: FontWeightManager.normalWeight,
+            const SizedBox(height: 7),
+            Text(
+              title,
+              style: StyleManager.smallTextStyle(
+                fontSize: 15,
+                color: color,
+                fontWeight: FontWeightManager.semiBoldWeight,
+              ),
             ),
-          ),
-        ],
+            const SizedBox(height: 3),
+            Text(
+              'December 20.2020',
+              style: StyleManager.smallTextStyle(
+                fontSize: 10,
+                color: color.withOpacity(0.9),
+                fontWeight: FontWeightManager.normalWeight,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
