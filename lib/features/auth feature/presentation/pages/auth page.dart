@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/resources/color manager.dart';
@@ -62,7 +63,7 @@ class AuthPage extends StatelessWidget {
                       text: 'Signup',
                       textColor: ColorManager.blueColor,
                       color: const Color.fromRGBO(236, 240, 252, 1.0),
-                      onPressed: () {},
+                      onPressed: (){},
                     ),
                     const SizedBox(width: 14),
                     AuthButton(
@@ -73,7 +74,7 @@ class AuthPage extends StatelessWidget {
                       onPressed: () {},
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),
