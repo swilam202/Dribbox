@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'core/utils/constants.dart';
 import 'features/auth feature/presentation/pages/auth page.dart';
 import 'features/home feature/presentation/pages/home page.dart';
+import 'features/storage details/presentation/pages/storage details page.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -24,8 +25,11 @@ class Dribbox extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-          primaryColor: Colors.brown, scaffoldBackgroundColor: Colors.white),
-      home: const HomePage(),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.white,
+        ),
+          primaryColor: Colors.brown, scaffoldBackgroundColor: Colors.white,),
+      home: const StorageDetailsPage(),
     );
   }
 }
