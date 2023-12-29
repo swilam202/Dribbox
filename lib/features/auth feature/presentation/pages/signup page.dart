@@ -1,9 +1,11 @@
 import 'package:dribbox/core/resources/style%20manager.dart';
 import 'package:dribbox/core/widgets/custom%20text%20form%20field.dart';
+import 'package:dribbox/features/auth%20feature/presentation/pages/otp%20form.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 
 import '../../../../core/resources/color manager.dart';
+import '../../../../core/utils/custom navigation.dart';
 import '../../../../core/widgets/custom button.dart';
 import '../widgets/auth page custom appbar.dart';
 import '../widgets/switch auth section.dart';
@@ -67,7 +69,7 @@ class AuthPage extends StatelessWidget {
                     CustomButton(
                       onPressed: () async {
                         if (key.currentState!.validate()) {
-                          Logger().d('message');
+                          CustomNavigation.push(const OTPForm(phone: '+201128678924'));
                         }
                       },
                       child: Text(

@@ -3,6 +3,7 @@ import 'package:dribbox/core/resources/font%20weight%20manager.dart';
 import 'package:dribbox/core/resources/style%20manager.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'core/utils/constants.dart';
 import 'features/auth feature/presentation/pages/on boarding.dart';
@@ -24,7 +25,7 @@ class Dribbox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,

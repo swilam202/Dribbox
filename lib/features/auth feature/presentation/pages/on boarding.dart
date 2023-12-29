@@ -1,3 +1,4 @@
+import 'package:dribbox/core/utils/custom%20navigation.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -66,7 +67,7 @@ class OnBoarding extends StatelessWidget {
                         textColor: ColorManager.blueColor,
                         color: const Color.fromRGBO(236, 240, 252, 1.0),
                         onPressed: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const AuthPage(),),);
+                          CustomNavigation.push(const AuthPage());
                         },
                       ),
                       const SizedBox(width: 14),
