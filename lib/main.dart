@@ -5,7 +5,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'core/utils/constants.dart';
-import 'features/auth feature/presentation/pages/auth page.dart';
+import 'features/auth feature/presentation/pages/on boarding.dart';
+import 'features/auth feature/presentation/pages/otp form.dart';
 import 'features/home feature/presentation/pages/home page.dart';
 import 'features/storage details/presentation/pages/storage details page.dart';
 import 'firebase_options.dart';
@@ -25,11 +26,13 @@ class Dribbox extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,
         ),
-          primaryColor: Colors.brown, scaffoldBackgroundColor: Colors.white,),
-      home: const StorageDetailsPage(),
+        scaffoldBackgroundColor: Colors.white,
+      ),
+      home: const OnBoarding(),
+      //home: const OTPForm(phone: '+201128678924'),
     );
   }
 }
