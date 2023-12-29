@@ -29,13 +29,13 @@ class LoginPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
 
-                CustomTextFormField(
+                const CustomTextFormField(
                   textInputType: TextInputType.phone,
                   labelText: 'Phone',
                   prefixIcon: Icons.phone,
                 ),
                 const SizedBox(height: 24),
-                CustomTextFormField(
+                const CustomTextFormField(
                   textInputType: TextInputType.visiblePassword,
                   labelText: 'Password',
                   prefixIcon: Icons.password,

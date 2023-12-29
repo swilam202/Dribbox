@@ -10,8 +10,8 @@ import '../../../../core/widgets/custom button.dart';
 import '../widgets/auth page custom appbar.dart';
 import '../widgets/switch auth section.dart';
 
-class AuthPage extends StatelessWidget {
-  const AuthPage({super.key});
+class SignupPage extends StatelessWidget {
+  const SignupPage({super.key});
 
   @override
   Widget build(BuildContext context) {

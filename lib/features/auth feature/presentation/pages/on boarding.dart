@@ -68,7 +68,7 @@ class OnBoarding extends StatelessWidget {
                         textColor: ColorManager.blueColor,
                         color: const Color.fromRGBO(236, 240, 252, 1.0),
                         onPressed: (){
-                          CustomNavigation.push(const AuthPage());
+                          CustomNavigation.push(const SignupPage());
                         },
                       ),
                       const SizedBox(width: 14),
