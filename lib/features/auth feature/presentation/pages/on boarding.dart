@@ -1,4 +1,5 @@
 import 'package:dribbox/core/utils/custom%20navigation.dart';
+import 'package:dribbox/features/auth%20feature/presentation/pages/login%20page.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -76,7 +77,9 @@ class OnBoarding extends StatelessWidget {
                         text: 'Login ',
                         textColor: ColorManager.whiteColor,
                         color: ColorManager.blueColor,
-                        onPressed: () {},
+                        onPressed: () {
+                          CustomNavigation.push(const LoginPage());
+                        },
                       ),
                     ],
                   ),
