@@ -69,7 +69,7 @@ class SignupPage extends StatelessWidget {
                 CustomButton(
                   onPressed: () async {
                     if (key.currentState!.validate()) {
-                      CustomNavigation.push(const OTPForm(phone: '+201128678924'));
+                      CustomNavigation.pushReplacement(const OTPForm(phone: '+201128678924'));
                     }
                   },
                   child: Text(

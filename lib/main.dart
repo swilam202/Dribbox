@@ -1,6 +1,7 @@
 import 'package:dribbox/core/resources/color%20manager.dart';
 import 'package:dribbox/core/resources/font%20weight%20manager.dart';
 import 'package:dribbox/core/resources/style%20manager.dart';
+import 'package:dribbox/core/widgets/custom%20dialog.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -32,8 +33,12 @@ class Dribbox extends StatelessWidget {
         ),
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: const OnBoarding(),
-      //home: const OTPForm(phone: '+201128678924'),
+      home:  PopScope(
+        canPop: false,
+        onPopInvoked: (val)async{
+          await showCustomDialog();
+        },
+          child: OnBoarding(),),
     );
   }
 }
