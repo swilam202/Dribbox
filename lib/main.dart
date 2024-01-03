@@ -33,12 +33,13 @@ class Dribbox extends StatelessWidget {
         ),
         scaffoldBackgroundColor: Colors.white,
       ),
-      home:  PopScope(
+      home: PopScope(
         canPop: false,
-        onPopInvoked: (val)async{
+        onPopInvoked: (val) async {
           await showCustomDialog();
         },
-          child: OnBoarding(),),
+        child: const OnBoarding(),
+      ),
     );
   }
 }
