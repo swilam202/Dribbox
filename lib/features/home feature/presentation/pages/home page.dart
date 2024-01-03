@@ -9,49 +9,16 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List lois = [
-      const HomePageFolder(
-        color: Colors.green,
-        title: 'Mobile apps',
-        icon: Icons.android,
-      ),
-      const HomePageFolder(
-        color: Colors.indigo,
-        title: 'Programming',
-        icon: Icons.code,
-      ),
-      const HomePageFolder(
-        color: Colors.amber,
-        title: 'Files',
-        icon: Icons.file_copy_outlined,
-      ),
-      const HomePageFolder(
-        color: Colors.orange,
-        title: 'Audio',
-        icon: Icons.music_note,
-      ),
-      const HomePageFolder(
-        color: Colors.blue,
-        title: 'Videos',
-        icon: Icons.ondemand_video,
-      ),
-      const HomePageFolder(
-        color: Colors.red,
-        title: 'Images',
-        icon: Icons.image,
-      ),
-      const HomePageFolder(
-        color: Colors.teal,
-        title: 'Archive',
-        icon: Icons.archive_rounded,
-      ),
-      const HomePageFolder(
-        color: Colors.grey,
-        title: 'Other',
-        icon: Icons.file_present,
-      ),
+    final List<FolderProperties> folders = [
+      APKFolderProperties(),
+      ProgrammingFolderProperties(),
+      FilesFolderProperties(),
+      AudioFolderProperties(),
+      VideosFolderProperties(),
+      ImagesFolderProperties(),
+      ArchiveFolderProperties(),
+      OtherFolderProperties(),
     ];
-    var a = APKFolderProperties().;
     return Scaffold(
       body: SafeArea(
         child: ListView(
@@ -108,14 +75,19 @@ class HomePage extends StatelessWidget {
                 mainAxisSpacing: 30,
               ),
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: lois.length,
+              itemCount: folders.length,
               itemBuilder: (context, index) {
-                return lois[index];
+                return HomePageFolder(folders[index]);
               },
             ),
             const SizedBox(height: 20),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){},
+
+        child: const Icon(Icons.add),
       ),
     );
   }
