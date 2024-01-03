@@ -1,8 +1,9 @@
 import 'dart:io';
+import 'package:path/path.dart';
 
 import 'package:dribbox/core/widgets/toast.dart';
 import 'package:file_picker/file_picker.dart';
-
+import 'package:firebase_storage/firebase_storage.dart';
 
 class FileProperties{
   final String name;
@@ -22,4 +23,14 @@ Future<File?> pickFile()async{
    file = File(filePickerResult.paths[0]!);
    return file;
   }
+}
+
+FirebaseStorage storage = FirebaseStorage.instance;
+
+Future<String> uploadFile(File file)async{
+  String name = basename(file.path);
+  Reference reference = FirebaseStorage.instance.ref('dribbox/************/$name');
+  await reference.putFile(file);
+  String? url = await reference.getDownloadURL();
+  return url;
 }
