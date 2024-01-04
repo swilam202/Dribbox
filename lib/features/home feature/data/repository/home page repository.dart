@@ -1,8 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:dribbox/core/error/failure.dart';
+import 'package:dribbox/core/resources/folders.dart';
 import 'package:dribbox/features/home%20feature/data/data%20source/home%20page%20base%20local%20data%20source.dart';
 import 'package:dribbox/features/home%20feature/data/model/uploaded%20file%20properties%20model.dart';
 import 'package:dribbox/features/home%20feature/domain/entites/file%20properties.dart';
+import 'package:dribbox/features/home%20feature/domain/entites/folder%20items.dart';
 import 'package:dribbox/features/home%20feature/domain/entites/uploaded%20file%20properties.dart';
 import 'package:dribbox/features/home%20feature/domain/repository/home%20page%20base%20repository.dart';
 
@@ -28,6 +30,28 @@ class HomePageRepository extends HomePageBaseRepository{
   @override
   Future<Either<Failure, UploadedFileProperties>> uploadFile(FileProperties file) async{
     final UploadedFilePropertiesModel model = await homePageBaseRemoteDataSource.uploadFile(file);
+    try{
+      return Right(model);
+    }
+    catch(ex){
+      return const Left(Failure('There was an error while uploading file please try again!'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<FolderItems>>> getAllItems() async{
+    final List<FolderItems> model = await homePageBaseRemoteDataSource.getAllItems();
+    try{
+      return Right(model);
+    }
+    catch(ex){
+      return const Left(Failure('There was an error while uploading file please try again!'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<FolderItems>>> getItemsByFolder(FolderProperties folder) async{
+    final List<FolderItems> model = await homePageBaseRemoteDataSource.getItemsByFolder(folder);
     try{
       return Right(model);
     }

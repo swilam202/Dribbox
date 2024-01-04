@@ -1,17 +1,19 @@
 class FolderItems {
   final String name;
+  final String url;
   final int size;
 
   FolderItems(
     this.name,
+    this.url,
     this.size,
   );
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is FolderItems && name == other.name && size == other.size;
+      other is FolderItems && name == other.name && size == other.size && url == other.url;
 
   @override
-  int get hashCode => name.hashCode ^ size.hashCode;
+  int get hashCode => name.hashCode ^ size.hashCode ^ url.hashCode;
 }
