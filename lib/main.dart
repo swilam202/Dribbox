@@ -1,6 +1,7 @@
 import 'package:dribbox/core/resources/color%20manager.dart';
 import 'package:dribbox/core/resources/font%20weight%20manager.dart';
 import 'package:dribbox/core/resources/style%20manager.dart';
+import 'package:dribbox/core/services/service%20locator.dart';
 import 'package:dribbox/core/widgets/custom%20dialog.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  ServiceLocator.setup();
   runApp(const Dribbox());
 }
 

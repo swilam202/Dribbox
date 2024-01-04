@@ -9,6 +9,7 @@ import 'package:dribbox/features/home%20feature/presentation/widgets/home%20page
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 
+import '../../../../core/services/service locator.dart';
 import '../../../../core/utils/file picker.dart';
 
 class HomePage extends StatelessWidget {
@@ -16,16 +17,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<FolderProperties> folders = [
-      APKFolderProperties(),
-      ProgrammingFolderProperties(),
-      FilesFolderProperties(),
-      AudioFolderProperties(),
-      VideosFolderProperties(),
-      ImagesFolderProperties(),
-      ArchiveFolderProperties(),
-      OtherFolderProperties(),
-    ];
+
     return Scaffold(
       body: SafeArea(
         child: ListView(
@@ -82,9 +74,9 @@ class HomePage extends StatelessWidget {
                 mainAxisSpacing: 30,
               ),
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: folders.length,
+              itemCount: sl<List<FolderProperties>>().length,
               itemBuilder: (context, index) {
-                return HomePageFolder(folders[index]);
+                return HomePageFolder(sl<List<FolderProperties>>()[index]);
               },
             ),
             const SizedBox(height: 20),
