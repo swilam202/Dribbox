@@ -12,4 +12,17 @@ class FileProperties {
     this.extension,
     this.size,
   );
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is FileProperties &&
+          file == other.file &&
+          extension == other.extension &&
+          size == other.size &&
+          name == other.name;
+
+  @override
+  int get hashCode =>
+      file.hashCode ^ name.hashCode ^ extension.hashCode ^ size.hashCode;
 }
