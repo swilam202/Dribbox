@@ -6,7 +6,7 @@ class FileProperties {
   final String extension;
   final int size;
 
-  FileProperties(
+  const FileProperties(
     this.file,
     this.name,
     this.extension,

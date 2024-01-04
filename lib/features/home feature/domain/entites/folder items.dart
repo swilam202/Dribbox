@@ -3,7 +3,7 @@ class FolderItems {
   final String url;
   final int size;
 
-  FolderItems(
+  const FolderItems(
     this.name,
     this.url,
     this.size,
