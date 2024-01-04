@@ -2,9 +2,11 @@ import 'dart:io';
 
 import 'package:dribbox/core/error/failure.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:logger/logger.dart';
 
 import '../model/file properties model.dart';
+import '../model/uploaded file properties model.dart';
 
 abstract class HomePageBaseLocalDataSource {
   Future<FilePropertiesModel> pickFile();

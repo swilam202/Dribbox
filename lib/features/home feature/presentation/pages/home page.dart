@@ -84,12 +84,12 @@ class HomePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: ()async{
+        onPressed: ()async{/*
           HomePageBaseLocalDataSource homePageBaseLocalDataSource = HomePageLocalDataSource();
           HomePageBaseRepository homePageBaseRepository = HomePageRepository(homePageBaseLocalDataSource);
          PickFileUseCase pickFileUseCase = PickFileUseCase(homePageBaseRepository);
          var res = await pickFileUseCase.execute();
-         Logger().t(res);
+         Logger().t(res);*/
         },
 
         child: const Icon(Icons.add),

@@ -5,5 +5,5 @@ import 'package:dribbox/features/home%20feature/domain/entites/uploaded%20file%2
 
 abstract class HomePageBaseRepository{
   Future<Either<Failure,FileProperties>> pickFile();
-  Future<Either<Failure,UploadedFileProperties>> uploadFile();
+  Future<Either<Failure,UploadedFileProperties>> uploadFile(FileProperties file);
 }
