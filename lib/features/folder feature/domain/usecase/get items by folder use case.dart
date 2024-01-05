@@ -3,12 +3,13 @@ import 'package:dribbox/core/resources/folders.dart';
 import 'package:dribbox/features/home%20feature/domain/repository/home%20page%20base%20repository.dart';
 
 import '../../../../core/error/failure.dart';
-import '../entites/folder items.dart';
+import '../../../../core/models/folder items.dart';
+import '../repository/folder page base repository.dart';
 
 class GetItemsByFolderUseCase{
-  HomePageBaseRepository homePageBaseRepository;
-  GetItemsByFolderUseCase(this.homePageBaseRepository);
+  FolderPageBaseRepository folderPageBaseRepository;
+  GetItemsByFolderUseCase(this.folderPageBaseRepository);
   Future<Either<Failure,List<FolderItems>>> execute(FolderProperties folder)async{
-    return await homePageBaseRepository.getItemsByFolder(folder);
+    return await folderPageBaseRepository.getItemsByFolder(folder);
   }
 }

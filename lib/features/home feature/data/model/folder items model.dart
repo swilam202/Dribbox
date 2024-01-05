@@ -1,4 +1,6 @@
-import 'package:dribbox/features/home%20feature/domain/entites/folder%20items.dart';
+
+
+import '../../../../core/models/folder items.dart';
 
 class FolderItemsModel extends FolderItems {
   FolderItemsModel(
