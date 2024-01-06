@@ -10,11 +10,9 @@ import '../widgets/otp field.dart';
 
 class OTPForm extends StatelessWidget {
   const OTPForm({
-    super.key,
-    required this.phone,
+    super.key
   });
 
-  final String phone;
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +68,7 @@ class OTPForm extends StatelessWidget {
                 ),
                 onPressed: () async {
                   await FirebaseAuth.instance.verifyPhoneNumber(
-                    phoneNumber: '+201128678924',
+                    phoneNumber: '+201550077272',
                     verificationCompleted: (PhoneAuthCredential credential) {},
                     verificationFailed: (FirebaseAuthException exception) {
                       Logger().t(exception.toString());

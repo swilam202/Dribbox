@@ -14,7 +14,7 @@ class FolderPageRemoteDateSource extends FolderPageBaseRemoteDateSource{
       FolderProperties folder) async {
     QuerySnapshot<Map<String, dynamic>> user = await FirebaseFirestore.instance
         .collection('users')
-        .where('phone', isEqualTo: '*************')
+        .where('phone', isEqualTo: '55555')
         .get();
     List<FolderItemsModel> files = [];
     for (int i = 0; i < (user.docs[0]['files']).length; i++) {

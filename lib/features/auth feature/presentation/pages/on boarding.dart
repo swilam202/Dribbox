@@ -74,7 +74,7 @@ class OnBoarding extends StatelessWidget {
                       const SizedBox(width: 14),
                       AuthButton(
                         icon: Icons.arrow_forward_ios,
-                        text: 'Login ',
+                        text: 'Login',
                         textColor: ColorManager.whiteColor,
                         color: ColorManager.blueColor,
                         onPressed: () {

@@ -1,6 +1,5 @@
-
-String fireBaseExceptionCodes(String code){
-  switch(code){
+String fireBaseExceptionCodes(String code) {
+  switch (code) {
     case 'invalid-phone-number':
       return 'Invalid phone number';
     case 'phone-number-already-exists':

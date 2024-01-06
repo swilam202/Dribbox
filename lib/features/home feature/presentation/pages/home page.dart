@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dribbox/core/resources/folders.dart';
 import 'package:dribbox/core/resources/font%20weight%20manager.dart';
 import 'package:dribbox/core/resources/style%20manager.dart';
 import 'package:dribbox/features/home%20feature/data/data%20source/home%20page%20base%20local%20data%20source.dart';
+import 'package:dribbox/features/home%20feature/data/data%20source/home%20page%20base%20remote%20data%20source.dart';
 import 'package:dribbox/features/home%20feature/data/repository/home%20page%20repository.dart';
 import 'package:dribbox/features/home%20feature/domain/repository/home%20page%20base%20repository.dart';
 import 'package:dribbox/features/home%20feature/domain/usecase/pick%20file%20use%20case.dart';
@@ -11,6 +13,8 @@ import 'package:logger/logger.dart';
 
 import '../../../../core/services/service locator.dart';
 import '../../../../core/utils/file picker.dart';
+import '../../data/model/file properties model.dart';
+import '../../data/model/uploaded file properties model.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -84,13 +88,26 @@ class HomePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: ()async{/*
-          HomePageBaseLocalDataSource homePageBaseLocalDataSource = HomePageLocalDataSource();
-          HomePageBaseRepository homePageBaseRepository = HomePageRepository(homePageBaseLocalDataSource);
-         PickFileUseCase pickFileUseCase = PickFileUseCase(homePageBaseRepository);
-         var res = await pickFileUseCase.execute();
-         Logger().t(res);*/
-        },
+        onPressed: ()async{
+          HomePageLocalDataSource homePageLocalDataSource = HomePageLocalDataSource();
+          HomePageRemoteDataSource homePageRemoteDataSource = HomePageRemoteDataSource();
+          FilePropertiesModel res = await homePageLocalDataSource.pickFile();
+          UploadedFilePropertiesModel ress = await homePageRemoteDataSource.uploadFile(res);
+          Logger().f(ress);
+         /* QuerySnapshot<Map<String, dynamic>> querySnapshot =
+          await FirebaseFirestore.instance.collection('users').where('phone', isEqualTo: '55555').get();
+          querySnapshot.docs.forEach((doc) async {
+            await doc.reference.update(
+              {
+                'data':'datdfa',
+                /*'files': FieldValue.arrayUnion([{
+                  'name':ress.name,
+                  'url':ress.url,
+                  'size': ress.size,
+                }]),*/
+              },
+            );
+          });  */      },
 
         child: const Icon(Icons.add),
       ),

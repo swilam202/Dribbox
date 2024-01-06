@@ -16,7 +16,7 @@ class HomePageRemoteDataSource extends HomePageBaseRemoteDataSource {
   Future<UploadedFilePropertiesModel> uploadFile(FileProperties file) async {
     // TODO: phone
     Reference reference =
-        FirebaseStorage.instance.ref('dribbox/************/${file.name}');
+        FirebaseStorage.instance.ref('dribbox/55555/${file.name}');
     await reference.putFile(file.file);
     String url = await reference.getDownloadURL();
     String type = getFileType(file.name);
@@ -28,7 +28,7 @@ class HomePageRemoteDataSource extends HomePageBaseRemoteDataSource {
   Future<List<FolderItemsModel>> getAllItems() async {
     QuerySnapshot<Map<String, dynamic>> user = await FirebaseFirestore.instance
         .collection('users')
-        .where('phone', isEqualTo: '*************')
+        .where('phone', isEqualTo: '55555')
         .get();
     List<FolderItemsModel> files = List.from((user.docs[0]['files'] as List)
         .map((item) => FolderItemsModel.fromMap(item)));

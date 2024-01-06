@@ -3,11 +3,11 @@ import 'package:dribbox/core/utils/constants.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
-customSnackBar(String title, String message) {
+customSnackBar(String title, String? message) {
   return Get.snackbar(
     title,
-    message,
-    backgroundColor: ColorManager.blueColor,
+    message ?? '',
+    backgroundColor: ColorManager.whiteColor,
     icon: const Icon(Icons.warning, color: ColorManager.redColor),
     duration: kDuration,
     isDismissible: true,
