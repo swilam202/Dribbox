@@ -7,7 +7,7 @@ customSnackBar(String title, String? message) {
   return Get.snackbar(
     title,
     message ?? '',
-    backgroundColor: ColorManager.whiteColor,
+    backgroundColor: ColorManager.greyColor,
     icon: const Icon(Icons.warning, color: ColorManager.redColor),
     duration: kDuration,
     isDismissible: true,

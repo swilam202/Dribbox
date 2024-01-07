@@ -42,7 +42,7 @@ class AuthController extends GetxController {
       codeAutoRetrievalTimeout: (String verificationId) {
         customSnackBar('Warning', 'request timed out please try again!');
       },
-      timeout: const Duration(minutes: 5),
+      timeout: const Duration(seconds: 120),
     );
     isLoading.value = false;
   }
