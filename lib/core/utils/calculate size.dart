@@ -1,8 +1,8 @@
 String calculateSize(int bytes) {
   double size;
 
-  if (bytes >= 1099511627776) {
-    size = bytes / 1099511627776;
+  if (bytes >= 1073741824) {
+    size = bytes / 1073741824;
     return '${size.toStringAsFixed(1)} GB';
   } else if (bytes >= 1048576) {
     size = bytes / 1048576;

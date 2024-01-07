@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dribbox/core/resources/folders.dart';
 import 'package:dribbox/core/resources/font%20weight%20manager.dart';
 import 'package:dribbox/core/resources/style%20manager.dart';
+import 'package:dribbox/features/folder%20feature/data/data%20source/folder%20page%20base%20data%20source.dart';
 import 'package:dribbox/features/home%20feature/data/data%20source/home%20page%20base%20local%20data%20source.dart';
 import 'package:dribbox/features/home%20feature/data/data%20source/home%20page%20base%20remote%20data%20source.dart';
 import 'package:dribbox/features/home%20feature/data/repository/home%20page%20repository.dart';
@@ -89,12 +90,12 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: ()async{
-          HomePageLocalDataSource homePageLocalDataSource = HomePageLocalDataSource();
+      /* HomePageLocalDataSource homePageLocalDataSource = HomePageLocalDataSource();
           HomePageRemoteDataSource homePageRemoteDataSource = HomePageRemoteDataSource();
           FilePropertiesModel res = await homePageLocalDataSource.pickFile();
           UploadedFilePropertiesModel ress = await homePageRemoteDataSource.uploadFile(res);
           Logger().f(ress);
-         /* QuerySnapshot<Map<String, dynamic>> querySnapshot =
+          QuerySnapshot<Map<String, dynamic>> querySnapshot =
           await FirebaseFirestore.instance.collection('users').where('phone', isEqualTo: '55555').get();
           querySnapshot.docs.forEach((doc) async {
             await doc.reference.update(
@@ -107,7 +108,15 @@ class HomePage extends StatelessWidget {
                 }]),*/
               },
             );
-          });  */      },
+          });
+          FolderPageRemoteDateSource folderPageRemoteDateSource = FolderPageRemoteDateSource();
+          HomePageRemoteDataSource homePageRemoteDataSource = HomePageRemoteDataSource();
+        //var res = await folderPageRemoteDateSource.getItemsByFolder(ImagesFolderProperties());
+        var res = await homePageRemoteDataSource.getAllItems();
+       Logger().t(res);
+          */
+
+        },
 
         child: const Icon(Icons.add),
       ),

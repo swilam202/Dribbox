@@ -7,6 +7,7 @@ class FolderItemsModel extends FolderItems {
     super.name,
     super.url,
     super.size,
+      super.type,
   );
 
   factory FolderItemsModel.fromMap(Map<String, dynamic> map) {
@@ -14,6 +15,7 @@ class FolderItemsModel extends FolderItems {
       map['name'],
       map['url'],
       map['size'],
+      map['type'],
     );
   }
 }
