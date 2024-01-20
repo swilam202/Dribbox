@@ -28,15 +28,16 @@ class AuthController extends GetxController {
   Future<void> signUpFunction() async {
     isLoading.value = true;
     await auth.verifyPhoneNumber(
-      phoneNumber: '+2${signUpPhoneController.text}',
+      phoneNumber: '+201128678924',
       verificationCompleted: (PhoneAuthCredential credential) async {
         await auth.signInWithCredential(credential);
-        CustomNavigation.pushReplacement(const HomePage());
+       // CustomNavigation.pushReplacement(const HomePage());
       },
       verificationFailed: (FirebaseAuthException exception) {
         customSnackBar('Alert', fireBaseExceptionCodes(exception.code));
       },
       codeSent: (String verificationId, int? resendToken) {
+        print(verificationId.toString());
         CustomNavigation.push(OTPForm(verificationId));
       },
       codeAutoRetrievalTimeout: (String verificationId) {
