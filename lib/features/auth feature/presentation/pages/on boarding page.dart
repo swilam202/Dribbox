@@ -10,8 +10,8 @@ import '../../../../core/utils/constants.dart';
 import '../widgets/auth button.dart';
 import 'signup page.dart';
 
-class OnBoarding extends StatelessWidget {
-  const OnBoarding({super.key});
+class OnBoardingPage extends StatelessWidget {
+  const OnBoardingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
