@@ -18,6 +18,7 @@ class OTPForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthController authController = Get.put(AuthController());
+    TextEditingController controller = TextEditingController();
     return Scaffold(
       appBar: authPageCustomAppBar('OTP'),
       body: Padding(
@@ -27,6 +28,14 @@ class OTPForm extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Container(
+                height: 50,
+                width: double.infinity,
+                child: TextField(
+                  controller: controller,
+                ),
+
+              ),
               Text(
                 'Enter Verification Code',
                 style: StyleManager.bigTextStyle(fontSize: 24),
@@ -57,6 +66,8 @@ class OTPForm extends StatelessWidget {
                   OTPField(isLast: false),
                   OTPField(isLast: false),
                   OTPField(isLast: false),
+                  OTPField(isLast: false),
+                  OTPField(isLast: false),
                   OTPField(isLast: true),
                 ],
               ),
@@ -69,7 +80,7 @@ class OTPForm extends StatelessWidget {
                   ),
                 ),
                 onPressed: () async {
-                  await authController.otpFunction(verificationId);
+                  await authController.otpFunction(verificationId, controller.text);
                 },
               ),
               const SizedBox(height: 24),

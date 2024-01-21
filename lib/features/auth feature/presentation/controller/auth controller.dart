@@ -61,13 +61,14 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> otpFunction(String verificationId) async {
+  Future<void> otpFunction(String verificationId,String sms) async {
     isLoading.value = true;
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
       verificationId: verificationId,
-      smsCode: otpController.text,
+      smsCode: sms,
     );
-    await auth.signInWithCredential(credential);
+    var a = await auth.signInWithCredential(credential);
+    print(a);
     isLoading.value = false;
   }
 }
