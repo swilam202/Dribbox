@@ -41,7 +41,6 @@ dependencies:
   flutter_native_splash: ^2.3.8
   logger: ^2.0.2+1
   flutter_launcher_icons: ^0.13.1
-  background_downloader: ^8.0.2
   fluttertoast: ^8.2.4
   file_picker: ^6.1.1
   flutter_local_notifications: ^16.2.0

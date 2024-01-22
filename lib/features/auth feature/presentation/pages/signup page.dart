@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
 import '../../../../core/resources/color manager.dart';
+import '../../../../core/services/service locator.dart';
 import '../../../../core/utils/custom navigation.dart';
 import '../../../../core/utils/firebase exception codes.dart';
 import '../../../../core/widgets/custom button.dart';
@@ -22,7 +23,7 @@ class SignupPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AuthController authController = AuthController();
+    final AuthController authController = Get.put(AuthController());
     return Scaffold(
       appBar: authPageCustomAppBar('Sign Up'),
       body: Center(
@@ -31,16 +32,17 @@ class SignupPage extends StatelessWidget {
 
           physics: const BouncingScrollPhysics(),
           child: Form(
-            key: authController.key,
+            key: authController.signupKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SignUpPageTextFieldSection(),
-                const SizedBox(height: 50),
+                SignUpPageTextFieldSection() ,             const SizedBox(height: 50),
                 CustomButton(
                   onPressed:()async{
-                    if(authController.key.currentState!.validate()){
+                    if(authController.signupKey.currentState!.validate()){
+                      Logger().f(authController.signUpPhoneController.text);
+
                       await authController.signUpFunction();
                     }
                   },

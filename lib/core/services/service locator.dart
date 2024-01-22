@@ -1,3 +1,4 @@
+import 'package:dribbox/features/auth%20feature/presentation/controller/auth%20controller.dart';
 import 'package:get_it/get_it.dart';
 
 import '../resources/folders.dart';
@@ -16,5 +17,7 @@ class ServiceLocator {
       ArchiveFolderProperties(),
       OtherFolderProperties(),
     ]);
+
+  // sl.registerSingleton<AuthController>(AuthController());
   }
 }

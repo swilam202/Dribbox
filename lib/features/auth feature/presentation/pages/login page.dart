@@ -1,8 +1,12 @@
+import 'package:dribbox/features/auth%20feature/presentation/controller/auth%20controller.dart';
 import 'package:dribbox/features/home%20feature/presentation/pages/home%20page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
 import '../../../../core/resources/color manager.dart';
 import '../../../../core/resources/style manager.dart';
+import '../../../../core/services/service locator.dart';
 import '../../../../core/utils/custom navigation.dart';
 import '../../../../core/widgets/custom button.dart';
 import '../../../../core/widgets/custom text form field.dart';
@@ -15,8 +19,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<FormState> key = GlobalKey();
-
+    final AuthController authController = Get.put(AuthController());
     return  Scaffold(
       appBar: authPageCustomAppBar('Login'),
       body: Center(
@@ -24,7 +27,7 @@ class LoginPage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24),
           physics: const BouncingScrollPhysics(),
           child: Form(
-            key: key,
+            key: authController.loginKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -34,17 +37,12 @@ class LoginPage extends StatelessWidget {
                   labelText: 'Phone',
                   prefixIcon: Icons.phone,
                 ),
-                const SizedBox(height: 24),
-                const CustomTextFormField(
-                  textInputType: TextInputType.visiblePassword,
-                  labelText: 'Password',
-                  prefixIcon: Icons.password,
-                  obscureText: true,
-                ),
-                const SizedBox(height: 30),
+
+                const SizedBox(height: 50),
                 CustomButton(
                   onPressed: () async {
-                    if (key.currentState!.validate()) {
+                    if (authController.loginKey.currentState!.validate()) {
+                      Logger().f(authController.signUpPhoneController.text);
                       CustomNavigation.pushReplacement(const HomePage());
                     }
                   },

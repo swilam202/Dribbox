@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../core/services/service locator.dart';
 import '../../../../core/widgets/custom text form field.dart';
 import '../controller/auth controller.dart';
 
@@ -10,6 +11,7 @@ class SignUpPageTextFieldSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthController authController = Get.put(AuthController());
+
     return  Column(
       children: [
         CustomTextFormField(

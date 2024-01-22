@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
 import '../../../../core/resources/color manager.dart';
+import '../../../../core/services/service locator.dart';
 import '../../../../core/widgets/custom button.dart';
 import '../widgets/otp field.dart';
 

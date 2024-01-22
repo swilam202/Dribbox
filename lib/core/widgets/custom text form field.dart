@@ -8,27 +8,23 @@ class CustomTextFormField extends StatelessWidget {
     this.hintText,
     this.labelText,
     this.prefixIcon,
-    this.suffixIcon,
     this.textInputType = TextInputType.text,
     this.controller,
     this.validator,
-    this.obscureText,
   });
 
   final String? hintText;
   final String? labelText;
   final IconData? prefixIcon;
-  final Widget? suffixIcon;
   final TextInputType? textInputType;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
-  final bool? obscureText;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       validator: validator,
-      obscureText: obscureText ?? false,
       keyboardType: textInputType,
       decoration: InputDecoration(
         enabledBorder:OutlineInputBorder(
@@ -46,7 +42,6 @@ class CustomTextFormField extends StatelessWidget {
                 prefixIcon,
                 color: ColorManager.blueColor,
               ),
-        suffixIcon: suffixIcon,
         hintText: hintText,
         labelStyle: const TextStyle(
           color: ColorManager.lightDarkColor,
