@@ -22,7 +22,7 @@ class SignupPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  //  final AuthController authController = AuthController();
+    final AuthController authController = AuthController();
     return Scaffold(
       appBar: authPageCustomAppBar('Sign Up'),
       body: Center(
@@ -31,38 +31,20 @@ class SignupPage extends StatelessWidget {
 
           physics: const BouncingScrollPhysics(),
           child: Form(
-           // key: authController.key,
+            key: authController.key,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SignUpPageTextFieldSection(),
-                const SizedBox(height: 30),
+                const SizedBox(height: 50),
                 CustomButton(
-                  onPressed:  ()async {
-                    FirebaseAuth auth = FirebaseAuth.instance;
-
-                    await auth.verifyPhoneNumber(
-                      phoneNumber: '+201550077272',
-                      verificationCompleted: (PhoneAuthCredential credential) async {
-                        await auth.signInWithCredential(credential);
-                         CustomNavigation.pushReplacement(const HomePage());
-                      },
-                      verificationFailed: (FirebaseAuthException exception) {
-                        customSnackBar('Alert', fireBaseExceptionCodes(exception.code));
-                      },
-                      codeSent: (String verificationId, int? resendToken) {
-                        print(verificationId.toString());
-                        CustomNavigation.push(OTPForm(verificationId));
-                      },
-                      codeAutoRetrievalTimeout: (String verificationId) {
-                        customSnackBar('Warning', 'request timed out please try again!');
-                      },
-                      timeout: const Duration(seconds: 120),
-                    );
+                  onPressed:()async{
+                    if(authController.key.currentState!.validate()){
+                      await authController.signUpFunction();
+                    }
                   },
-                  child:// authController.isLoading.value ?
-                 // const Center(child: CircularProgressIndicator()):
+                  child:
                   Text(
                     'Sign Up',
                     style: StyleManager.smallTextStyle(

@@ -41,22 +41,7 @@ class SignUpPageTextFieldSection extends StatelessWidget {
               return null;
           },
         ),
-        const SizedBox(height: 24),
-        CustomTextFormField(
-          textInputType: TextInputType.visiblePassword,
-          labelText: 'Password',
-          prefixIcon: Icons.password,
-          controller: authController.signUpPasswordController,
-          validator: (val) {
-            if (val == null || val.isEmpty)
-              return "Password can't be empty";
-            else if (val.length <= 6)
-              return 'password is too short';
-            else
-              return null;
-          },
-          obscureText: true,
-        ),],
+        ],
     );
   }
 }

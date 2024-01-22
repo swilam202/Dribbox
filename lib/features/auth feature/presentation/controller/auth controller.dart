@@ -16,36 +16,33 @@ class AuthController extends GetxController {
 
   TextEditingController signUpNameController = TextEditingController();
   TextEditingController signUpPhoneController = TextEditingController();
-  TextEditingController signUpPasswordController = TextEditingController();
   TextEditingController logInPhoneController = TextEditingController();
-  TextEditingController logInPasswordController = TextEditingController();
   TextEditingController otpController = TextEditingController();
 
-  RxBool isLoading = false.obs;
 
   FirebaseAuth auth = FirebaseAuth.instance;
 
+
   Future<void> signUpFunction() async {
-    isLoading.value = true;
+    FirebaseAuth auth = FirebaseAuth.instance;
+
     await auth.verifyPhoneNumber(
-      phoneNumber: '+201128678924',
+      phoneNumber: '+2${signUpPhoneController.text}',
       verificationCompleted: (PhoneAuthCredential credential) async {
         await auth.signInWithCredential(credential);
-       // CustomNavigation.pushReplacement(const HomePage());
+        CustomNavigation.pushReplacement(const HomePage());
       },
       verificationFailed: (FirebaseAuthException exception) {
         customSnackBar('Alert', fireBaseExceptionCodes(exception.code));
       },
       codeSent: (String verificationId, int? resendToken) {
-        print(verificationId.toString());
         CustomNavigation.push(OTPForm(verificationId));
       },
       codeAutoRetrievalTimeout: (String verificationId) {
-        customSnackBar('Warning', 'request timed out please try again!');
+        customSnackBar('Warning', 'Request timed out please try again!');
       },
       timeout: const Duration(seconds: 120),
     );
-    isLoading.value = false;
   }
 
   Future<void> logInFunction() async {
@@ -62,13 +59,18 @@ class AuthController extends GetxController {
   }
 
   Future<void> otpFunction(String verificationId,String sms) async {
-    isLoading.value = true;
-    PhoneAuthCredential credential = PhoneAuthProvider.credential(
-      verificationId: verificationId,
-      smsCode: sms,
-    );
-    var a = await auth.signInWithCredential(credential);
-    print(a);
-    isLoading.value = false;
+    try{
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: verificationId,
+        smsCode: sms,
+      );
+      var a = await auth.signInWithCredential(credential);
+      Logger().i(a.credential);
+      Logger().i(a.user!.phoneNumber.toString());
+      Logger().i(a.user!.uid.toString());
+    }
+    catch(e){
+      Logger().e(e);
+    }
   }
 }

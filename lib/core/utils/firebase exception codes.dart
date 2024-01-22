@@ -6,6 +6,8 @@ String fireBaseExceptionCodes(String code) {
       return 'Phone number already in use';
     case 'internal-error':
       return 'Something went wrong, please try again!';
+    case 'too-many-requests':
+      return 'you tried too many times, please try again later';
     case 'network-request-failed':
       return 'Connection error, please check your connection';
     default:
