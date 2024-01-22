@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'core/utils/constants.dart';
-import 'features/auth feature/presentation/pages/otp form.dart';
+import 'features/auth feature/presentation/pages/on boarding page.dart';
 import 'features/home feature/presentation/pages/home page.dart';
 import 'features/splash feature/presentation/pages/splash page.dart';
 import 'features/storage details/presentation/pages/storage details page.dart';
@@ -42,7 +42,7 @@ class Dribbox extends StatelessWidget {
         onPopInvoked: (val) async {
           await showCustomDialog();
         },
-        child: const SignupPage(),
+        child: const OnBoardingPage(),
       ),
     );
   }
