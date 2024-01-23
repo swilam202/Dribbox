@@ -43,7 +43,7 @@ class SignupPage extends StatelessWidget {
                     if(authController.signupKey.currentState!.validate()){
                       Logger().f(authController.signUpPhoneController.text);
 
-                      await authController.signUpFunction();
+                      await authController.registrationFunction(false);
                     }
                   },
                   child:

@@ -32,7 +32,8 @@ class LoginPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
 
-                const CustomTextFormField(
+                 CustomTextFormField(
+                  controller: authController.logInPhoneController,
                   textInputType: TextInputType.phone,
                   labelText: 'Phone',
                   prefixIcon: Icons.phone,
@@ -42,8 +43,9 @@ class LoginPage extends StatelessWidget {
                 CustomButton(
                   onPressed: () async {
                     if (authController.loginKey.currentState!.validate()) {
-                      Logger().f(authController.signUpPhoneController.text);
-                      CustomNavigation.pushReplacement(const HomePage());
+                      Logger().w('log: ${authController.logInPhoneController.text}');
+
+                      await authController.registrationFunction(true);
                     }
                   },
                   child: Text(

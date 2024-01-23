@@ -1,4 +1,4 @@
-String fireBaseExceptionCodes(String code) {
+String firebaseExceptionCodes(String code) {
   switch (code) {
     case 'invalid-phone-number':
       return 'Invalid phone number';

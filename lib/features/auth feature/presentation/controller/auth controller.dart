@@ -24,18 +24,18 @@ class AuthController extends GetxController {
    final FirebaseAuth auth = FirebaseAuth.instance;
 
 
-    Future<void> signUpFunction() async {
+    Future<void> registrationFunction(bool isLogin) async {
 
     Logger().i('signUpFunction ${signUpPhoneController.text}');
     try{
       await auth.verifyPhoneNumber(
-        phoneNumber: '+2${signUpPhoneController.text}',
+        phoneNumber: '+2${isLogin?logInPhoneController.text:signUpPhoneController.text}',
         verificationCompleted: (PhoneAuthCredential credential) async {
           await auth.signInWithCredential(credential);
           CustomNavigation.pushReplacement(const HomePage());
         },
         verificationFailed: (FirebaseAuthException exception) {
-          customSnackBar('Alert', fireBaseExceptionCodes(exception.code));
+          customSnackBar('Alert', firebaseExceptionCodes(exception.code));
         },
         codeSent: (String verificationId, int? resendToken) {
           CustomNavigation.push(OTPForm(verificationId));
@@ -50,22 +50,19 @@ class AuthController extends GetxController {
       customToast(e.toString());
     }
   }
-
+/*
   Future<void> logInFunction() async {
-    Logger().i(logInPhoneController.text);
 
     try{
-      FirebaseAuth auth = FirebaseAuth.instance;
       ConfirmationResult confirmationResult = await auth.signInWithPhoneNumber('+2${logInPhoneController.text}');
-      if(confirmationResult.verificationId != null){
         CustomNavigation.push(OTPForm(confirmationResult.verificationId));
-      }
+
 
     }
     catch(e){
       customToast(e.toString());
     }
-  }
+  }*/
 
   Future<void> otpFunction(String verificationId,String sms) async {
     Logger().i(sms);
@@ -79,6 +76,7 @@ class AuthController extends GetxController {
       Logger().i(a.credential);
       Logger().i(a.user!.phoneNumber.toString());
       Logger().i(a.user!.uid.toString());
+      CustomNavigation.pushReplacement(const HomePage());
     }
     catch(e){
       customToast(e.toString());
