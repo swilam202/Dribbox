@@ -14,22 +14,22 @@ import '../../../../core/widgets/custom toast.dart';
 class AuthController extends GetxController {
    final GlobalKey<FormState> signupKey = GlobalKey();
    final GlobalKey<FormState> loginKey = GlobalKey();
+   final GlobalKey<FormState> otpKey = GlobalKey();
 
     TextEditingController signUpNameController = TextEditingController();
-    TextEditingController signUpPhoneController = TextEditingController();
-    TextEditingController logInPhoneController = TextEditingController();
+    TextEditingController phoneController = TextEditingController();
     TextEditingController otpController = TextEditingController();
 
 
    final FirebaseAuth auth = FirebaseAuth.instance;
 
+  List<String> pinList = [];
+    Future<void> registrationFunction() async {
 
-    Future<void> registrationFunction(bool isLogin) async {
-
-    Logger().i('signUpFunction ${signUpPhoneController.text}');
+    Logger().i('signUpFunction ${phoneController.text}');
     try{
       await auth.verifyPhoneNumber(
-        phoneNumber: '+2${isLogin?logInPhoneController.text:signUpPhoneController.text}',
+        phoneNumber: '+2${phoneController.text}',
         verificationCompleted: (PhoneAuthCredential credential) async {
           await auth.signInWithCredential(credential);
           CustomNavigation.pushReplacement(const HomePage());

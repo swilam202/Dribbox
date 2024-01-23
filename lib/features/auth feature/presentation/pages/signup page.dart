@@ -41,9 +41,9 @@ class SignupPage extends StatelessWidget {
                 CustomButton(
                   onPressed:()async{
                     if(authController.signupKey.currentState!.validate()){
-                      Logger().f(authController.signUpPhoneController.text);
+                      Logger().f(authController.phoneController.text);
 
-                      await authController.registrationFunction(false);
+                      await authController.registrationFunction();
                     }
                   },
                   child:

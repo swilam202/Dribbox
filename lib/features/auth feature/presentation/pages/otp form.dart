@@ -19,24 +19,24 @@ class OTPForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthController authController = Get.put(AuthController());
-    TextEditingController controller = TextEditingController();
     return Scaffold(
       appBar: authPageCustomAppBar('OTP'),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Form(
+          key: authController.otpKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
+              /*Container(
                 height: 50,
                 width: double.infinity,
                 child: TextField(
                   controller: controller,
                 ),
 
-              ),
+              ),*/
               Text(
                 'Enter Verification Code',
                 style: StyleManager.bigTextStyle(fontSize: 24),
@@ -47,7 +47,7 @@ class OTPForm extends StatelessWidget {
                   text: 'Enter code that we have sent to your number ',
                   children: [
                     TextSpan(
-                      text: '+2${authController.otpController.text}',
+                      text: '+2${authController.phoneController.text}',
                       style: StyleManager.smallTextStyle(
                         color: ColorManager.blackColor,
                         fontSize: 16,
@@ -64,12 +64,12 @@ class OTPForm extends StatelessWidget {
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  OTPField(isLast: false),
-                  OTPField(isLast: false),
-                  OTPField(isLast: false),
-                  OTPField(isLast: false),
-                  OTPField(isLast: false),
-                  OTPField(isLast: true),
+                  OTPField(isLast: false,id: 1),
+                  OTPField(isLast: false,id: 2),
+                  OTPField(isLast: false,id: 3),
+                  OTPField(isLast: false,id: 4),
+                  OTPField(isLast: false,id: 5),
+                  OTPField(isLast: true, id: 6),
                 ],
               ),
               const SizedBox(height: 40),
@@ -81,8 +81,15 @@ class OTPForm extends StatelessWidget {
                   ),
                 ),
                 onPressed: () async {
-                  await authController.otpFunction(verificationId, controller.text);
-                },
+                  authController.pinList.clear();
+
+                 if(authController.otpKey.currentState!.validate()){
+                   authController.otpKey.currentState!.save();
+                   String smsCode = authController.pinList.join();
+
+                   await authController.otpFunction(verificationId, smsCode);
+                 }
+                 },
               ),
               const SizedBox(height: 24),
               Row(

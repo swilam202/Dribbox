@@ -4,6 +4,7 @@ import 'package:dribbox/core/resources/style%20manager.dart';
 import 'package:dribbox/core/services/service%20locator.dart';
 import 'package:dribbox/core/widgets/custom%20dialog.dart';
 import 'package:dribbox/features/auth%20feature/presentation/pages/login%20page.dart';
+import 'package:dribbox/features/auth%20feature/presentation/pages/otp%20form.dart';
 import 'package:dribbox/features/auth%20feature/presentation/pages/signup%20page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +43,7 @@ class Dribbox extends StatelessWidget {
         onPopInvoked: (val) async {
           await showCustomDialog();
         },
-        child: const LoginPage(),
+        child: const SplashPage(),
       ),
     );
   }

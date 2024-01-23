@@ -33,19 +33,27 @@ class LoginPage extends StatelessWidget {
               children: [
 
                  CustomTextFormField(
-                  controller: authController.logInPhoneController,
+                  controller: authController.phoneController,
                   textInputType: TextInputType.phone,
                   labelText: 'Phone',
                   prefixIcon: Icons.phone,
+                   validator: (value){
+                    if(value == null || value.length != 11){
+                      return 'Please enter a valid phone number';
+                    }
+                    else{
+                      return null;
+                    }
+                   },
                 ),
 
                 const SizedBox(height: 50),
                 CustomButton(
                   onPressed: () async {
                     if (authController.loginKey.currentState!.validate()) {
-                      Logger().w('log: ${authController.logInPhoneController.text}');
+                      Logger().w('log: ${authController.phoneController.text}');
 
-                      await authController.registrationFunction(true);
+                      await authController.registrationFunction();
                     }
                   },
                   child: Text(

@@ -32,7 +32,7 @@ class SignUpPageTextFieldSection extends StatelessWidget {
           textInputType: TextInputType.phone,
           labelText: 'Phone',
           prefixIcon: Icons.phone,
-          controller: authController.signUpPhoneController,
+          controller: authController.phoneController,
 
           validator: (val) {
             if (val == null || val.isEmpty)
