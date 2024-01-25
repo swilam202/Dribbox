@@ -32,7 +32,6 @@ class AuthController extends GetxController {
         phoneNumber: '+2${phoneController.text}',
         verificationCompleted: (PhoneAuthCredential credential) async {
           await auth.signInWithCredential(credential);
-          CustomNavigation.pushReplacement(const HomePage());
         },
         verificationFailed: (FirebaseAuthException exception) {
           customSnackBar('Alert', firebaseExceptionCodes(exception.code));
@@ -76,7 +75,7 @@ class AuthController extends GetxController {
       Logger().i(a.credential);
       Logger().i(a.user!.phoneNumber.toString());
       Logger().i(a.user!.uid.toString());
-      CustomNavigation.pushReplacement(const HomePage());
+      CustomNavigation.pushReplacement( HomePage());
     }
     catch(e){
       customToast(e.toString());

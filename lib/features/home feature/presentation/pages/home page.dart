@@ -15,14 +15,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
+import '../../../../core/models/folder items.dart';
 import '../../../../core/services/service locator.dart';
 import '../../../../core/utils/file picker.dart';
 import '../../data/model/file properties model.dart';
 import '../../data/model/uploaded file properties model.dart';
+import '../../domain/entites/file properties.dart';
 import '../widgets/home page files listview.dart';
 
+
+
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +41,7 @@ class HomePage extends StatelessWidget {
               children: [
                 const SizedBox(height: 20),
                 Text(
-                  'Your dribBox',
+                  'Your dribbox',
                   style: StyleManager.bigTextStyle(
                     fontWeight: FontWeightManager.semiBoldWeight,
                     fontSize: 24,
@@ -66,7 +71,7 @@ class HomePage extends StatelessWidget {
                         DropdownMenuItem(
                           value: true,
                           child: Text(
-                            'Folders',
+                            'Folder',
                             style: StyleManager.bigTextStyle(
                               fontSize: 16,
                               fontWeight: FontWeightManager.normalWeight,
@@ -80,7 +85,7 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 25),
                 homePageController.folderView.value
                     ? const HomePageFolderGrid()
-                    : const HomePageFilesListview(),
+                    :  HomePageFilesListview(files: homePageController.files,),
                 const SizedBox(height: 20),
               ],
             ),
@@ -88,6 +93,7 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: ()async{
+          await homePageController.load();
       /* HomePageLocalDataSource homePageLocalDataSource = HomePageLocalDataSource();
           HomePageRemoteDataSource homePageRemoteDataSource = HomePageRemoteDataSource();
           FilePropertiesModel res = await homePageLocalDataSource.pickFile();
