@@ -43,7 +43,7 @@ class Dribbox extends StatelessWidget {
         onPopInvoked: (val) async {
           await showCustomDialog();
         },
-        child: const SplashPage(),
+        child: const HomePage(),
       ),
     );
   }
