@@ -11,17 +11,16 @@ import '../../../../core/utils/custom navigation.dart';
 import '../../../../core/widgets/custom button.dart';
 import '../../../../core/widgets/custom text form field.dart';
 import '../widgets/auth page custom appbar.dart';
-import '../widgets/switch auth section.dart';
 
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final AuthController authController = Get.put(AuthController());
     return  Scaffold(
-      appBar: authPageCustomAppBar('Login'),
+      appBar: authPageCustomAppBar('Register'),
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -47,7 +46,7 @@ class LoginPage extends StatelessWidget {
                    },
                 ),
 
-                const SizedBox(height: 50),
+                const SizedBox(height: 80),
                 CustomButton(
                   onPressed: () async {
                     if (authController.loginKey.currentState!.validate()) {
@@ -57,15 +56,13 @@ class LoginPage extends StatelessWidget {
                     }
                   },
                   child: Text(
-                    'Login',
+                    'Register',
                     style: StyleManager.smallTextStyle(
-                      color: ColorManager.blackColor,
+                      color: ColorManager.whiteColor,
                       fontSize: 20,
                     ),
                   ),
                 ),
-                const SizedBox(height: 30),
-                const SwitchAuthSection(isLogin: true),
               ],
             ),
           ),

@@ -64,12 +64,12 @@ class OTPForm extends StatelessWidget {
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  OTPField(isLast: false,id: 1),
-                  OTPField(isLast: false,id: 2),
-                  OTPField(isLast: false,id: 3),
-                  OTPField(isLast: false,id: 4),
-                  OTPField(isLast: false,id: 5),
-                  OTPField(isLast: true, id: 6),
+                  OTPField(isLast: false),
+                  OTPField(isLast: false),
+                  OTPField(isLast: false),
+                  OTPField(isLast: false),
+                  OTPField(isLast: false),
+                  OTPField(isLast: true,),
                 ],
               ),
               const SizedBox(height: 40),

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dribbox/core/services/storage.dart';
 import 'package:dribbox/core/utils/firebase%20exception%20codes.dart';
 import 'package:dribbox/core/widgets/custom%20snack%20bar.dart';
 import 'package:dribbox/features/auth%20feature/presentation/pages/otp%20form.dart';
@@ -12,11 +13,9 @@ import '../../../../core/utils/custom navigation.dart';
 import '../../../../core/widgets/custom toast.dart';
 
 class AuthController extends GetxController {
-   final GlobalKey<FormState> signupKey = GlobalKey();
    final GlobalKey<FormState> loginKey = GlobalKey();
    final GlobalKey<FormState> otpKey = GlobalKey();
 
-    TextEditingController signUpNameController = TextEditingController();
     TextEditingController phoneController = TextEditingController();
     TextEditingController otpController = TextEditingController();
 
@@ -49,19 +48,7 @@ class AuthController extends GetxController {
       customToast(e.toString());
     }
   }
-/*
-  Future<void> logInFunction() async {
 
-    try{
-      ConfirmationResult confirmationResult = await auth.signInWithPhoneNumber('+2${logInPhoneController.text}');
-        CustomNavigation.push(OTPForm(confirmationResult.verificationId));
-
-
-    }
-    catch(e){
-      customToast(e.toString());
-    }
-  }*/
 
   Future<void> otpFunction(String verificationId,String sms) async {
     Logger().i(sms);
@@ -75,10 +62,21 @@ class AuthController extends GetxController {
       Logger().i(a.credential);
       Logger().i(a.user!.phoneNumber.toString());
       Logger().i(a.user!.uid.toString());
+      writeData('phone', '+2${phoneController.text}');
       CustomNavigation.pushReplacement( HomePage());
+     var res = await readData('phone');
+      Logger().i('phone: $res');
     }
-    catch(e){
-      customToast(e.toString());
+    on FirebaseAuthException catch(e){
+      customToast(firebaseExceptionCodes(e.code));
+      Logger().e(e.message);
+      Logger().e(e.code);
+      Logger().e(e.toString());
+    }
+    catch(ex){
+      customToast(ex.toString());
     }
   }
 }
+
+

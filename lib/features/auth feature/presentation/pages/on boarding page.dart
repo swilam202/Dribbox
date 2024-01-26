@@ -1,5 +1,5 @@
 import 'package:dribbox/core/utils/custom%20navigation.dart';
-import 'package:dribbox/features/auth%20feature/presentation/pages/login%20page.dart';
+import 'package:dribbox/features/auth%20feature/presentation/pages/register.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +8,6 @@ import '../../../../core/resources/font weight manager.dart';
 import '../../../../core/resources/style manager.dart';
 import '../../../../core/utils/constants.dart';
 import '../widgets/auth button.dart';
-import 'signup page.dart';
 
 class OnBoardingPage extends StatelessWidget {
   const OnBoardingPage({super.key});
@@ -62,23 +61,15 @@ class OnBoardingPage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AuthButton(
-                          icon: Icons.fingerprint,
-                          text: 'Signup',
-                          textColor: ColorManager.blueColor,
-                          color: const Color.fromRGBO(236, 240, 252, 1.0),
-                          onPressed: (){
-                            CustomNavigation.push(const SignupPage());
-                          },
-                        ),
+
                         const SizedBox(width: 14),
                         AuthButton(
                           icon: Icons.arrow_forward_ios,
-                          text: 'Login',
+                          text: 'Register',
                           textColor: ColorManager.whiteColor,
                           color: ColorManager.blueColor,
                           onPressed: () {
-                            CustomNavigation.push(const LoginPage());
+                            CustomNavigation.push(const RegisterPage());
                           },
                         ),
                       ],

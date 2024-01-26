@@ -9,11 +9,8 @@ class OTPField extends StatelessWidget {
   const OTPField({
     super.key,
     required this.isLast,
-    required this.id,
-
   });
   final bool isLast;
-  final int id;
   @override
   Widget build(BuildContext context) {
     final AuthController authController = Get.put(AuthController());
@@ -33,8 +30,6 @@ class OTPField extends StatelessWidget {
             else
               FocusScope.of(context).nextFocus();
           }
-          else if (value.isEmpty)
-            FocusScope.of(context).previousFocus();
 
         },
         keyboardType: TextInputType.number,
