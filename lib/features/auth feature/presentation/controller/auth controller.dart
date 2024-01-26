@@ -35,7 +35,7 @@ class AuthController extends GetxController {
         verificationFailed: (FirebaseAuthException exception) {
           customSnackBar('Alert', firebaseExceptionCodes(exception.code));
         },
-        codeSent: (String verificationId, int? resendToken) {
+        codeSent: (String verificationId, int? resendToken) async{
           CustomNavigation.push(OTPForm(verificationId));
         },
         codeAutoRetrievalTimeout: (String verificationId) {
@@ -63,9 +63,9 @@ class AuthController extends GetxController {
       Logger().i(a.user!.phoneNumber.toString());
       Logger().i(a.user!.uid.toString());
       writeData('phone', '+2${phoneController.text}');
+      await createFirestoreUser();
       CustomNavigation.pushReplacement( HomePage());
-     var res = await readData('phone');
-      Logger().i('phone: $res');
+
     }
     on FirebaseAuthException catch(e){
       customToast(firebaseExceptionCodes(e.code));
@@ -76,6 +76,14 @@ class AuthController extends GetxController {
     catch(ex){
       customToast(ex.toString());
     }
+  }
+
+  Future<void> createFirestoreUser()async{
+      await FirebaseFirestore.instance.collection('users').doc('+201550077272').set(
+        {
+          'files' : [],
+        }
+      );
   }
 }
 
