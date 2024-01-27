@@ -1,5 +1,7 @@
+import 'package:dribbox/core/services/storage.dart';
 import 'package:dribbox/core/utils/constants.dart';
 import 'package:dribbox/core/utils/custom%20navigation.dart';
+import 'package:dribbox/features/home%20feature/presentation/pages/home%20page.dart';
 import 'package:flutter/material.dart';
 
 import '../../../auth feature/presentation/pages/on boarding page.dart';
@@ -49,7 +51,13 @@ class _SplashPageState extends State<SplashPage>
     );
     _animationController.forward().then(
           (_) => Future.delayed(const Duration(seconds: 2),
-              () => CustomNavigation.pushReplacement(const OnBoardingPage())),
+              () async{
+                String? value = await readData('phone');
+
+                CustomNavigation.pushReplacement(
+                  value == null ? const OnBoardingPage():HomePage(),
+                );
+              },),
         );
   }
 }

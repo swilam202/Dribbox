@@ -13,20 +13,19 @@ import '../../../../core/utils/custom navigation.dart';
 import '../../../../core/widgets/custom toast.dart';
 
 class AuthController extends GetxController {
-   final GlobalKey<FormState> loginKey = GlobalKey();
-   final GlobalKey<FormState> otpKey = GlobalKey();
+  final GlobalKey<FormState> loginKey = GlobalKey();
+  final GlobalKey<FormState> otpKey = GlobalKey();
 
-    TextEditingController phoneController = TextEditingController();
-    TextEditingController otpController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController otpController = TextEditingController();
 
-
-   final FirebaseAuth auth = FirebaseAuth.instance;
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
   List<String> pinList = [];
-    Future<void> registrationFunction() async {
 
+  Future<void> registrationFunction() async {
     Logger().i('signUpFunction ${phoneController.text}');
-    try{
+    try {
       await auth.verifyPhoneNumber(
         phoneNumber: '+2${phoneController.text}',
         verificationCompleted: (PhoneAuthCredential credential) async {
@@ -35,7 +34,7 @@ class AuthController extends GetxController {
         verificationFailed: (FirebaseAuthException exception) {
           customSnackBar('Alert', firebaseExceptionCodes(exception.code));
         },
-        codeSent: (String verificationId, int? resendToken) async{
+        codeSent: (String verificationId, int? resendToken) async {
           CustomNavigation.push(OTPForm(verificationId));
         },
         codeAutoRetrievalTimeout: (String verificationId) {
@@ -43,17 +42,15 @@ class AuthController extends GetxController {
         },
         timeout: const Duration(seconds: 120),
       );
-    }
-    catch(e){
+    } catch (e) {
       customToast(e.toString());
     }
   }
 
-
-  Future<void> otpFunction(String verificationId,String sms) async {
+  Future<void> otpFunction(String verificationId, String sms) async {
     Logger().i(sms);
 
-    try{
+    try {
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
         verificationId: verificationId,
         smsCode: sms,
@@ -64,27 +61,31 @@ class AuthController extends GetxController {
       Logger().i(a.user!.uid.toString());
       writeData('phone', '+2${phoneController.text}');
       await createFirestoreUser();
-      CustomNavigation.pushReplacement( HomePage());
-
-    }
-    on FirebaseAuthException catch(e){
+      CustomNavigation.pushReplacement(HomePage());
+    } on FirebaseAuthException catch (e) {
       customToast(firebaseExceptionCodes(e.code));
       Logger().e(e.message);
       Logger().e(e.code);
       Logger().e(e.toString());
-    }
-    catch(ex){
+    } catch (ex) {
       customToast(ex.toString());
     }
   }
 
-  Future<void> createFirestoreUser()async{
-      await FirebaseFirestore.instance.collection('users').doc('+201550077272').set(
-        {
-          'files' : [],
-        }
-      );
+  Future<void> createFirestoreUser() async {
+    DocumentSnapshot<Map<String, dynamic>> document = await FirebaseFirestore
+        .instance
+        .collection('users')
+        .doc('+2${phoneController.text}')
+        .get();
+
+    if (!(document.exists)) {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc('+2${phoneController.text}')
+          .set({
+        'files': [],
+      });
+    }
   }
 }
-
-
