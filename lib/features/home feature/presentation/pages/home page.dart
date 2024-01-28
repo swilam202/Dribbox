@@ -26,8 +26,7 @@ import '../widgets/home page files listview.dart';
 
 
 class HomePage extends StatelessWidget {
-
-
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -85,15 +84,15 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 25),
                 homePageController.folderView.value
                     ? const HomePageFolderGrid()
-                    :  HomePageFilesListview(files: homePageController.files,),
+                    :  HomePageFilesListview(),
                 const SizedBox(height: 20),
               ],
-            ),
+            )
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: ()async{
-          await homePageController.load();
+          await homePageController.getAllItems();
       /* HomePageLocalDataSource homePageLocalDataSource = HomePageLocalDataSource();
           HomePageRemoteDataSource homePageRemoteDataSource = HomePageRemoteDataSource();
           FilePropertiesModel res = await homePageLocalDataSource.pickFile();
