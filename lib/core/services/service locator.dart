@@ -23,8 +23,7 @@ class ServiceLocator {
       OtherFolderProperties(),
     ]);
 
-  // sl.registerSingleton<AuthController>(AuthController());
-
+    //HomePage
     sl.registerLazySingleton<HomePageBaseLocalDataSource>(() => HomePageLocalDataSource());
     sl.registerLazySingleton<HomePageBaseRemoteDataSource>(() => HomePageRemoteDataSource());
     sl.registerLazySingleton<HomePageBaseRepository>(() => HomePageRepository(sl(), sl()));

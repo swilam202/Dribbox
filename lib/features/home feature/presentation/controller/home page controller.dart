@@ -11,6 +11,8 @@ import '../../domain/usecase/get all items use case.dart';
 
 class HomePageController extends GetxController{
   RxBool folderView = false.obs;
+  RxBool isRight = true.obs;
+  RxString errorMessage = ''.obs;
   void toggleView(){
     folderView.value = !(folderView.value);
   }
@@ -25,7 +27,14 @@ class HomePageController extends GetxController{
   getAllItems()async{
     Either<Failure, List<FolderItems>> data = await sl<GetAllItemsUseCase>().execute();
     Logger().i('data is $data');
-    data.fold((l) => customToast(l.message), (r) => files.value = r);
+    data.fold((l) {
+      errorMessage.value = l.message;
+      isRight.value = false;
+    }, (r) {
+      isRight.value = true;
+      files.value = r;
+    });
+
   }
 
 }

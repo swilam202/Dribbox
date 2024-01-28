@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
         child: Obx(
             ()=>ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               physics: const BouncingScrollPhysics(),
               children: [
                 const SizedBox(height: 20),
@@ -84,16 +84,16 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 25),
                 homePageController.folderView.value
                     ? const HomePageFolderGrid()
-                    :  HomePageFilesListview(),
+                    :  const HomePageFilesListview(),
                 const SizedBox(height: 20),
               ],
             )
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+    /*  floatingActionButton: FloatingActionButton(
         onPressed: ()async{
           await homePageController.getAllItems();
-      /* HomePageLocalDataSource homePageLocalDataSource = HomePageLocalDataSource();
+      HomePageLocalDataSource homePageLocalDataSource = HomePageLocalDataSource();
           HomePageRemoteDataSource homePageRemoteDataSource = HomePageRemoteDataSource();
           FilePropertiesModel res = await homePageLocalDataSource.pickFile();
           UploadedFilePropertiesModel ress = await homePageRemoteDataSource.uploadFile(res);
@@ -117,12 +117,12 @@ class HomePage extends StatelessWidget {
         //var res = await folderPageRemoteDateSource.getItemsByFolder(ImagesFolderProperties());
         var res = await homePageRemoteDataSource.getAllItems();
        Logger().t(res);
-          */
+
 
         },
 
         child: const Icon(Icons.add),
-      ),
+      ), */
     );
   }
 }
