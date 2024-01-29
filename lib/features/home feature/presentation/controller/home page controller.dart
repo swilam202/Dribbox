@@ -9,6 +9,7 @@ import '../../../../core/error/failure.dart';
 import '../../../../core/services/service locator.dart';
 import '../../domain/entites/file properties.dart';
 import '../../domain/entites/uploaded file properties.dart';
+import '../../domain/usecase/delete file use case.dart';
 import '../../domain/usecase/get all items use case.dart';
 import '../../domain/usecase/pick file use case.dart';
 import '../../domain/usecase/upload file use case.dart';
@@ -48,6 +49,11 @@ class HomePageController extends GetxController{
       data.fold((l) => customToast(l.message), (r) => customToast('File uploaded successfully'));
     });
 
+  }
+
+  deleteFile(FolderItems folderItems)async{
+    Either<Failure, void> data = await sl<DeleteFileUseCase>().execute(folderItems);
+    data.fold((l) => customToast(l.message), (r) => customToast('File deleted successfully'));
   }
 
 }

@@ -32,9 +32,9 @@ class Dribbox extends StatelessWidget {
     return GetMaterialApp(
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.white,
+          backgroundColor: ColorManager.whiteColor,
         ),
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: ColorManager.whiteColor,
       ),
       home: PopScope(
         canPop: false,

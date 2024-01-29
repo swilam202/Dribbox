@@ -3,6 +3,7 @@ import 'package:dribbox/core/utils/get%20file%20type.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:logger/logger.dart';
 
+import '../../../../core/models/folder items.dart';
 import '../../../../core/services/storage.dart';
 import '../../domain/entites/file properties.dart';
 import '../model/folder items model.dart';
@@ -11,6 +12,7 @@ import '../model/uploaded file properties model.dart';
 abstract class HomePageBaseRemoteDataSource {
   Future<UploadedFilePropertiesModel> uploadFile(FileProperties file);
   Future<List<FolderItemsModel>> getAllItems();
+  Future<void> deleteFile(FolderItems file);
 }
 
 class HomePageRemoteDataSource extends HomePageBaseRemoteDataSource {
@@ -23,7 +25,8 @@ class HomePageRemoteDataSource extends HomePageBaseRemoteDataSource {
 
     Reference reference = FirebaseStorage.instance.ref('dribbox/$phone/${file.name}');
     Logger().f('refffffffffffffffffffffffffffffffffffffffffffff ${reference}');
-
+///remove the res
+    await reference.delete();
     var res = await reference.putFile(file.file);
     Logger().f('puttttttttttttt ${file.file}');
     Logger().f('resssssssssss ${res}');
@@ -51,9 +54,7 @@ files.add({
     return UploadedFilePropertiesModel(file.name, type, url, file.size);
   }
 
-  updateFirestoreUser()async{
 
-  }
 
   @override
   Future<List<FolderItemsModel>> getAllItems() async {
@@ -67,6 +68,24 @@ files.add({
         .map((item) => FolderItemsModel.fromMap(item)));
     Logger().wtf('files $files');
     return files;
+  }
+
+  @override
+  Future<void> deleteFile(FolderItems file) async{
+    String? phone = await readData('phone');
+    Reference reference = FirebaseStorage.instance.ref('dribbox/$phone/${file.name}');
+    await reference.delete();
+    DocumentReference<Map<String, dynamic>> user = FirebaseFirestore.instance.collection('users').doc(phone);
+
+    DocumentSnapshot<Map<String, dynamic>> documentSnapshot = await user.get();
+    List files = (documentSnapshot.data()!)['files'];
+    Logger().f('filessssss $files');
+    files.removeWhere((element) => element['name'] == file.name);
+    Logger().f('afterrrrr files $files');
+
+   return await user.set({
+      'files': files,
+    });
   }
 
 

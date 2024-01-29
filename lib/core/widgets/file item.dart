@@ -7,9 +7,10 @@ import '../models/folder items.dart';
 import '../utils/calculate size.dart';
 
 class FileItem extends StatelessWidget {
-  const FileItem({super.key,required this.folder,required this.file});
+  const FileItem({super.key,required this.folder,required this.file,required this.onPressed});
   final FolderProperties folder;
   final FolderItems file;
+  final Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -21,7 +22,10 @@ class FileItem extends StatelessWidget {
           Text(calculateSize(file.size),style: StyleManager.smallTextStyle()),
         ],
       ),
-      trailing: const Icon(Icons.more_vert),
+      trailing: IconButton(
+        onPressed: onPressed,
+        icon: const Icon(Icons.more_vert),
+      )
     );
   }
 }
