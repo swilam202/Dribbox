@@ -19,7 +19,7 @@ class APKFolderProperties extends FolderProperties {
   String get name => 'Mobile apps';
 
   @override
-  List<String> get types => ['.apk'];
+  List<String> get types => ['apk'];
 
   @override
   IconData get icon => Icons.android;
@@ -37,17 +37,17 @@ class ProgrammingFolderProperties extends FolderProperties {
 
   @override
   List<String> get types => [
-        '.html',
-        '.cpp',
-        '.java',
-        '.dart',
-        '.css',
-        '.js',
-        '.kt',
-        '.py',
-        '.c',
-        '.php',
-        '.ipymb'
+        'html',
+        'cpp',
+        'java',
+        'dart',
+        'css',
+        'js',
+        'kt',
+        'py',
+        'c',
+        'php',
+        'ipymb'
       ];
 
   @override
@@ -66,11 +66,11 @@ class FilesFolderProperties extends FolderProperties {
 
   @override
   List<String> get types => [
-        '.txt',
-        '.pdf',
-        '.pptx',
-        '.xlsx',
-        '.docx',
+        'txt',
+        'pdf',
+        'pptx',
+        'xlsx',
+        'docx',
       ];
 
   @override
@@ -89,9 +89,9 @@ class AudioFolderProperties extends FolderProperties {
 
   @override
   List<String> get types => [
-        '.mp3',
-        '.lrc',
-        '.m4a',
+        'mp3',
+        'lrc',
+        'm4a',
       ];
 
   @override
@@ -110,10 +110,10 @@ class VideosFolderProperties extends FolderProperties {
 
   @override
   List<String> get types => [
-        '.mp4',
-        '.webm',
-        '.mkv',
-        '.mov',
+        'mp4',
+        'webm',
+        'mkv',
+        'mov',
       ];
 
   @override
@@ -132,11 +132,11 @@ class ImagesFolderProperties extends FolderProperties {
 
   @override
   List<String> get types => [
-        '.jpeg',
-        '.png',
-        '.gif',
-        '.psd',
-        '.svg',
+        'jpeg',
+        'png',
+        'gif',
+        'psd',
+        'svg',
       ];
 
   @override
@@ -155,9 +155,9 @@ class ArchiveFolderProperties extends FolderProperties {
 
   @override
   List<String> get types => [
-        '.zip',
-        '.rar',
-        '.rar4',
+        'zip',
+        'rar',
+        'rar4',
       ];
 
   @override

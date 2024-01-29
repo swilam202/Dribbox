@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dribbox/core/resources/color%20manager.dart';
 import 'package:dribbox/core/resources/folders.dart';
 import 'package:dribbox/core/resources/font%20weight%20manager.dart';
 import 'package:dribbox/core/resources/style%20manager.dart';
@@ -90,9 +91,11 @@ class HomePage extends StatelessWidget {
             )
         ),
       ),
-    /*  floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: ColorManager.blueColor,
         onPressed: ()async{
-          await homePageController.getAllItems();
+        await homePageController.uploadFile();
+      /*    await homePageController.getAllItems();
       HomePageLocalDataSource homePageLocalDataSource = HomePageLocalDataSource();
           HomePageRemoteDataSource homePageRemoteDataSource = HomePageRemoteDataSource();
           FilePropertiesModel res = await homePageLocalDataSource.pickFile();
@@ -117,12 +120,12 @@ class HomePage extends StatelessWidget {
         //var res = await folderPageRemoteDateSource.getItemsByFolder(ImagesFolderProperties());
         var res = await homePageRemoteDataSource.getAllItems();
        Logger().t(res);
-
+*/
 
         },
 
-        child: const Icon(Icons.add),
-      ), */
+        child: const Icon(Icons.cloud_upload,color: ColorManager.whiteColor),
+      ),
     );
   }
 }

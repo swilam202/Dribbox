@@ -7,7 +7,11 @@ import 'package:logger/logger.dart';
 
 import '../../../../core/error/failure.dart';
 import '../../../../core/services/service locator.dart';
+import '../../domain/entites/file properties.dart';
+import '../../domain/entites/uploaded file properties.dart';
 import '../../domain/usecase/get all items use case.dart';
+import '../../domain/usecase/pick file use case.dart';
+import '../../domain/usecase/upload file use case.dart';
 
 class HomePageController extends GetxController{
   RxBool folderView = false.obs;
@@ -33,6 +37,15 @@ class HomePageController extends GetxController{
     }, (r) {
       isRight.value = true;
       files.value = r;
+    });
+
+  }
+
+  uploadFile()async{
+    Either<Failure, FileProperties> file = await sl<PickFileUseCase>().execute();
+    file.fold((l) => customToast(l.message), (r) async{
+      Either<Failure, UploadedFileProperties> data = await sl<UploadFileUseCase>().execute(r);
+      data.fold((l) => customToast(l.message), (r) => customToast('File uploaded successfully'));
     });
 
   }
