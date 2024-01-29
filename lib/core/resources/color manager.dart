@@ -6,6 +6,8 @@ class ColorManager{
   static const blueColor = Colors.blue;
   static const whiteColor = Colors.white;
   static const redColor = Colors.red;
+  static const greenColor = Colors.green;
+  static const amberColor = Colors.amber;
   static const greyColor = Color.fromRGBO(226, 226, 226, 1.0);
 
 }

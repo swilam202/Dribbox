@@ -49,16 +49,7 @@ class HomePageRepository extends HomePageBaseRepository{
     }
   }
 
-  @override
-  Future<Either<Failure, String>> deleteFile(FolderItems file) async{
-     var model =  await homePageBaseRemoteDataSource.deleteFile(file);
-    try{
-      return const Right('File deleted successfully');
-    }
-    catch(ex){
-      return const Left(Failure('There was an error while uploading file please try again!'));
-    }
-  }
+
 
 
 

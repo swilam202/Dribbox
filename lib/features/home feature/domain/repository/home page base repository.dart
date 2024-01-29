@@ -9,5 +9,4 @@ abstract class HomePageBaseRepository{
   Future<Either<Failure,FileProperties>> pickFile();
   Future<Either<Failure,UploadedFileProperties>> uploadFile(FileProperties file);
   Future<Either<Failure,List<FolderItems>>> getAllItems();
-  Future<Either<Failure,String>> deleteFile(FolderItems file);
 }

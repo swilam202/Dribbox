@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dribbox/core/services/storage.dart';
 import 'package:dribbox/core/utils/firebase%20exception%20codes.dart';
+import 'package:dribbox/core/utils/toast%20status.dart';
 import 'package:dribbox/core/widgets/custom%20snack%20bar.dart';
 import 'package:dribbox/features/auth%20feature/presentation/pages/otp%20form.dart';
 import 'package:dribbox/features/home%20feature/presentation/pages/home%20page.dart';
@@ -43,7 +44,7 @@ class AuthController extends GetxController {
         timeout: const Duration(seconds: 120),
       );
     } catch (e) {
-      customToast(e.toString());
+      await customToast(e.toString(),ToastStatus.error);
     }
   }
 
@@ -63,12 +64,12 @@ class AuthController extends GetxController {
       await createFirestoreUser();
       CustomNavigation.pushReplacement(HomePage());
     } on FirebaseAuthException catch (e) {
-      customToast(firebaseExceptionCodes(e.code));
+      await customToast(firebaseExceptionCodes(e.code),ToastStatus.error);
       Logger().e(e.message);
       Logger().e(e.code);
       Logger().e(e.toString());
     } catch (ex) {
-      customToast(ex.toString());
+     await customToast(ex.toString(),ToastStatus.error);
     }
   }
 

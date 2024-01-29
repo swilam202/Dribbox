@@ -37,9 +37,7 @@ class HomePageFilesListview extends StatelessWidget {
                     }
 
                   }
-                  return FileItem(folder: folderProperties, file: homePageController.files[index],onPressed: ()async{
-                    await homePageController.deleteFile(homePageController.files[index]);
-                  },);
+                  return FileItem(folder: folderProperties, file: homePageController.files[index]);
                 }
             );
           }

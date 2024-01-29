@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dribbox/core/models/folder%20items.dart';
+import 'package:dribbox/core/utils/toast%20status.dart';
 import 'package:dribbox/core/widgets/custom%20toast.dart';
 import 'package:dribbox/features/home%20feature/data/data%20source/home%20page%20base%20remote%20data%20source.dart';
 import 'package:get/get.dart';
@@ -9,7 +10,6 @@ import '../../../../core/error/failure.dart';
 import '../../../../core/services/service locator.dart';
 import '../../domain/entites/file properties.dart';
 import '../../domain/entites/uploaded file properties.dart';
-import '../../domain/usecase/delete file use case.dart';
 import '../../domain/usecase/get all items use case.dart';
 import '../../domain/usecase/pick file use case.dart';
 import '../../domain/usecase/upload file use case.dart';
@@ -44,16 +44,15 @@ class HomePageController extends GetxController{
 
   uploadFile()async{
     Either<Failure, FileProperties> file = await sl<PickFileUseCase>().execute();
-    file.fold((l) => customToast(l.message), (r) async{
+    file.fold((l)async => await customToast(l.message,ToastStatus.error), (r) async{
+      Logger().d('rrrrrrrrrrrrrr $r');
       Either<Failure, UploadedFileProperties> data = await sl<UploadFileUseCase>().execute(r);
-      data.fold((l) => customToast(l.message), (r) => customToast('File uploaded successfully'));
+      data.fold((l)async => await customToast(l.message,ToastStatus.error), (r) async=> await customToast('File uploaded successfully',ToastStatus.success));
     });
 
   }
 
-  deleteFile(FolderItems folderItems)async{
-    Either<Failure, void> data = await sl<DeleteFileUseCase>().execute(folderItems);
-    data.fold((l) => customToast(l.message), (r) => customToast('File deleted successfully'));
-  }
+
+
 
 }
