@@ -26,9 +26,18 @@ import '../widgets/home page files listview.dart';
 
 
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
+  updateUI(){
+    setState(() {});
+  }
   @override
   Widget build(BuildContext context) {
   final HomePageController homePageController = Get.put(HomePageController());
@@ -85,7 +94,7 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 25),
                 homePageController.folderView.value
                     ? const HomePageFolderGrid()
-                    :  const HomePageFilesListview(),
+                    :   HomePageFilesListview(),
                 const SizedBox(height: 20),
               ],
             )

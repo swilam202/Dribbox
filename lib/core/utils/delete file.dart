@@ -6,7 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import '../services/storage.dart';
 import 'toast status.dart';
 
-Future<void> deleteFile(FolderItems file) async {
+Future<void> deleteFileFunction(FolderItems file) async {
   String? phone = await readData('phone');
   Reference reference =
       FirebaseStorage.instance.ref('dribbox/$phone/${file.name}');

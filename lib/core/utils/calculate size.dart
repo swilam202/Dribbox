@@ -3,15 +3,15 @@ String calculateSize(int bytes) {
 
   if (bytes >= 1073741824) {
     size = bytes / 1073741824;
-    return '${size.toStringAsFixed(1)} GB';
+    return '${size.toStringAsFixed(2)} GB';
   } else if (bytes >= 1048576) {
     size = bytes / 1048576;
-    return '${size.toStringAsFixed(1)} MB';
+    return '${size.toStringAsFixed(2)} MB';
   } else if (bytes >= 1024) {
     size = bytes / 1024;
-    return '${size.toStringAsFixed(1)} KB';
+    return '${size.toStringAsFixed(2)} KB';
   } else {
     size = bytes.toDouble();
-    return '${size.toStringAsFixed(1)} Byte';
+    return '${size.toStringAsFixed(2)} Byte';
   }
 }

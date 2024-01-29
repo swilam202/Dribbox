@@ -10,6 +10,7 @@ import '../../domain/entites/file properties.dart';
 
 class HomePageFilesListview extends StatelessWidget {
   const HomePageFilesListview({super.key});
+
   @override
   Widget build(BuildContext context) {
     final HomePageController homePageController = Get.put(HomePageController());
@@ -35,7 +36,6 @@ class HomePageFilesListview extends StatelessWidget {
                       folderProperties = sl<List<FolderProperties>>()[i];
                       break;
                     }
-
                   }
                   return FileItem(folder: folderProperties, file: homePageController.files[index]);
                 }

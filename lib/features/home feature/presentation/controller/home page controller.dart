@@ -8,6 +8,7 @@ import 'package:logger/logger.dart';
 
 import '../../../../core/error/failure.dart';
 import '../../../../core/services/service locator.dart';
+import '../../../../core/utils/delete file.dart';
 import '../../domain/entites/file properties.dart';
 import '../../domain/entites/uploaded file properties.dart';
 import '../../domain/usecase/get all items use case.dart';
@@ -18,18 +19,22 @@ class HomePageController extends GetxController{
   RxBool folderView = false.obs;
   RxBool isRight = true.obs;
   RxString errorMessage = ''.obs;
+  RxBool isLoading = false.obs;
+  RxBool isDeleting = false.obs;
   void toggleView(){
     folderView.value = !(folderView.value);
   }
 
-  HomePageRemoteDataSource homePageRemoteDataSource = HomePageRemoteDataSource();
+
+  //HomePageRemoteDataSource homePageRemoteDataSource = HomePageRemoteDataSource();
   RxList<FolderItems> files = <FolderItems>[].obs;
  /* load()async{
     files.value = await homePageRemoteDataSource.getAllItems();
     Logger().i(files.value);
   }*/
 
-  getAllItems()async{
+  Future<void> getAllItems()async{
+    isLoading.value = true;
     Either<Failure, List<FolderItems>> data = await sl<GetAllItemsUseCase>().execute();
     Logger().i('data is $data');
     data.fold((l) {
@@ -39,20 +44,29 @@ class HomePageController extends GetxController{
       isRight.value = true;
       files.value = r;
     });
-
+  Logger().i('filsssssssssssssssssssssssssss $files');
+    isLoading.value = false;
   }
 
-  uploadFile()async{
+  Future<void> uploadFile()async{
+
     Either<Failure, FileProperties> file = await sl<PickFileUseCase>().execute();
     file.fold((l)async => await customToast(l.message,ToastStatus.error), (r) async{
       Logger().d('rrrrrrrrrrrrrr $r');
       Either<Failure, UploadedFileProperties> data = await sl<UploadFileUseCase>().execute(r);
-      data.fold((l)async => await customToast(l.message,ToastStatus.error), (r) async=> await customToast('File uploaded successfully',ToastStatus.success));
+      data.fold((l)async => await customToast(l.message,ToastStatus.error), (r) async{
+        await customToast('File uploaded successfully',ToastStatus.success);
+      });
     });
 
   }
 
-
+  Future<void> deleteFile(FolderItems file)async{
+    isDeleting.value = true;
+    await deleteFileFunction(file);
+    update();
+    isDeleting.value = false;
+  }
 
 
 }
