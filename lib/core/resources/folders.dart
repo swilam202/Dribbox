@@ -47,7 +47,15 @@ class ProgrammingFolderProperties extends FolderProperties {
         'py',
         'c',
         'php',
-        'ipymb'
+        'ipymb',
+        'ipynb',
+        'json',
+        'xml',
+        'yml',
+        'yaml',
+        'sql',
+
+
       ];
 
   @override
@@ -71,6 +79,13 @@ class FilesFolderProperties extends FolderProperties {
         'pptx',
         'xlsx',
         'docx',
+        'doc',
+        'ppt',
+        'xls',
+        'csv',
+        'rtf',
+
+
       ];
 
   @override
@@ -92,6 +107,8 @@ class AudioFolderProperties extends FolderProperties {
         'mp3',
         'lrc',
         'm4a',
+        'wav',
+        'wma',
       ];
 
   @override
@@ -114,6 +131,10 @@ class VideosFolderProperties extends FolderProperties {
         'webm',
         'mkv',
         'mov',
+        'wmv',
+        'flv',
+         'm4v',
+
       ];
 
   @override
@@ -133,10 +154,13 @@ class ImagesFolderProperties extends FolderProperties {
   @override
   List<String> get types => [
         'jpeg',
+    'jpg',
         'png',
         'gif',
         'psd',
         'svg',
+        'webp',
+
       ];
 
   @override
