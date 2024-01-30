@@ -1,4 +1,4 @@
-
+/*
 import '../../../../core/models/folder items.dart';
 
 class FolderItemsModel extends FolderItems {
@@ -17,4 +17,4 @@ class FolderItemsModel extends FolderItems {
       map['type'],
     );
   }
-}
+}*/

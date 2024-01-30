@@ -1,6 +1,7 @@
 
 
 import '../../../../core/models/folder items.dart';
+import 'folder items.dart';
 
 class FolderItemsModel extends FolderItems {
   FolderItemsModel(

@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import '../../../../core/models/folder items.dart';
 import '../../../../core/services/service locator.dart';
 import '../../domain/entites/file properties.dart';
+import 'file item.dart';
 
 class HomePageFilesListview extends StatelessWidget {
   const HomePageFilesListview({super.key});
@@ -22,28 +23,28 @@ class HomePageFilesListview extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         } else {
-          if(homePageController.isRight.value == true){
+          if(homePageController.getAllItemsSuccess.value == true){
             return ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: homePageController.files.length,
+                itemCount: homePageController.allFiles.length,
                 shrinkWrap: true,
                 itemBuilder: (context,index) {
                   FolderProperties folderProperties = OtherFolderProperties();
                   for (int i = 0; i <
                       (sl<List<FolderProperties>>().length); i++) {
-                    if (homePageController.files[index].type ==
+                    if (homePageController.allFiles[index].type ==
                         sl<List<FolderProperties>>()[i].name) {
                       folderProperties = sl<List<FolderProperties>>()[i];
                       break;
                     }
                   }
-                  return FileItem(folder: folderProperties, file: homePageController.files[index]);
+                  return FileItem(folder: folderProperties, file: homePageController.allFiles[index]);
                 }
             );
           }
           else{
             return  Center(
-              child: Text(homePageController.errorMessage.value),
+              child: Text(homePageController.allFilesErrorMessage.value),
             );
           }
 

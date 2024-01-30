@@ -4,6 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:logger/logger.dart';
 
 import '../../../../core/models/folder items.dart';
+import '../../../../core/resources/folders.dart';
 import '../../../../core/services/storage.dart';
 import '../../domain/entites/file properties.dart';
 import '../model/folder items model.dart';
@@ -12,6 +13,8 @@ import '../model/uploaded file properties model.dart';
 abstract class HomePageBaseRemoteDataSource {
   Future<UploadedFilePropertiesModel> uploadFile(FileProperties file);
   Future<List<FolderItemsModel>> getAllItems();
+  Future<List<FolderItemsModel>> getItemsByFolder(FolderProperties folder);
+
 }
 
 class HomePageRemoteDataSource extends HomePageBaseRemoteDataSource {
@@ -68,7 +71,27 @@ files.add({
     return files;
   }
 
+  @override
+  Future<List<FolderItemsModel>> getItemsByFolder(
+      FolderProperties folder) async {
+    String? phone = await readData('phone');
 
+    DocumentSnapshot<Map<String, dynamic>> user = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(phone)
+        .get();
+    List data = (user.data()!)['files'];
+    Logger().f('dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa $data');
+    List<FolderItemsModel> files = [];
+    for (int i = 0; i < data.length; i++) {
+      if (data[i]['type'] == folder.name) {
+        files.add(FolderItemsModel.fromMap(data[i]));
+      }
+    }
+    /*List.from((user.docs[0]['files'] as List)
+        .map((item) => FolderItemsModel.fromMap(item)));*/
+    return files;
+  }
 
 
 }

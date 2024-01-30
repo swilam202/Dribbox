@@ -1,4 +1,4 @@
-/*import 'package:dribbox/core/resources/color%20manager.dart';
+import 'package:dribbox/core/resources/color%20manager.dart';
 import 'package:dribbox/core/resources/folders.dart';
 import 'package:dribbox/core/resources/style%20manager.dart';
 import 'package:dribbox/core/utils/delete%20file.dart';
@@ -6,9 +6,10 @@ import 'package:dribbox/features/home%20feature/domain/entites/file%20properties
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../features/home feature/presentation/controller/home page controller.dart';
-import '../models/folder items.dart';
-import '../utils/calculate size.dart';
+import '../../../../core/utils/calculate size.dart';
+import '../../data/model/folder items.dart';
+import '../controller/home page controller.dart';
+
 
 class FileItem extends StatelessWidget {
   const FileItem({super.key,required this.folder,required this.file});
@@ -28,13 +29,13 @@ class FileItem extends StatelessWidget {
         ],
       ),
       trailing: Obx(
-          ()=>IconButton(
-            onPressed:  homePageController.isDeleting.value == true? null:()async{
-              await homePageController.deleteFile(file);
-            },
-            icon: homePageController.isDeleting.value == true?const CircularProgressIndicator(color: ColorManager.redColor):const Icon(Icons.delete,color: ColorManager.redColor,),
-          ),
+            ()=>IconButton(
+          onPressed:  homePageController.isDeleting.value == true? null:()async{
+            await homePageController.deleteFile(file);
+          },
+          icon: homePageController.isDeleting.value == true?const CircularProgressIndicator(color: ColorManager.redColor):const Icon(Icons.delete,color: ColorManager.redColor,),
+        ),
       ),
     );
   }
-}*/
+}

@@ -7,9 +7,11 @@ import 'package:dribbox/core/models/folder%20items.dart';
 import 'package:dribbox/features/home%20feature/domain/entites/uploaded%20file%20properties.dart';
 import 'package:dribbox/features/home%20feature/domain/repository/home%20page%20base%20repository.dart';
 
+import '../../../../core/resources/folders.dart';
 import '../data source/home page base remote data source.dart';
 import '../model/file properties model.dart';
 import '../model/folder items model.dart';
+import '../model/folder items.dart';
 
 class HomePageRepository extends HomePageBaseRepository{
   HomePageBaseLocalDataSource homePageBaseLocalDataSource;
@@ -49,7 +51,16 @@ class HomePageRepository extends HomePageBaseRepository{
     }
   }
 
-
+  @override
+  Future<Either<Failure, List<FolderItems>>> getItemsByFolder(FolderProperties folder) async{
+    final List<FolderItems> model = await homePageBaseRemoteDataSource.getItemsByFolder(folder);
+    try{
+      return Right(model);
+    }
+    catch(ex){
+      return const Left(Failure('There was an error while uploading file please try again!'));
+    }
+  }
 
 
 

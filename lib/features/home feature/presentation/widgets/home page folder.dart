@@ -1,5 +1,7 @@
 import 'package:dribbox/core/resources/folders.dart';
 import 'package:dribbox/core/resources/font%20weight%20manager.dart';
+import 'package:dribbox/core/utils/custom%20navigation.dart';
+import 'package:dribbox/features/home%20feature/presentation/pages/folder%20page.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/resources/style manager.dart';
@@ -17,7 +19,9 @@ class HomePageFolder extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(20),
       splashColor: folder.color.withOpacity(0.05),
-      onTap: () {},
+      onTap: () {
+        CustomNavigation.push(FolderPage(folder: folder));
+      },
       child: Container(
         alignment: Alignment.center,
         decoration: BoxDecoration(

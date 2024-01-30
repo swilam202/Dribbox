@@ -3,6 +3,7 @@ import 'package:dribbox/features/home%20feature/domain/repository/home%20page%20
 
 import '../../../../core/error/failure.dart';
 import '../../../../core/models/folder items.dart';
+import '../../data/model/folder items.dart';
 
 class GetAllItemsUseCase {
   HomePageBaseRepository homePageBaseRepository;

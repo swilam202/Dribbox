@@ -1,14 +1,17 @@
 import 'package:dartz/dartz.dart';
 import 'package:dribbox/core/models/folder%20items.dart';
+import 'package:dribbox/core/resources/folders.dart';
 import 'package:dribbox/core/utils/toast%20status.dart';
 import 'package:dribbox/core/widgets/custom%20toast.dart';
 import 'package:dribbox/features/home%20feature/data/data%20source/home%20page%20base%20remote%20data%20source.dart';
+import 'package:dribbox/features/home%20feature/domain/usecase/get%20items%20by%20folder%20use%20case.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
 import '../../../../core/error/failure.dart';
 import '../../../../core/services/service locator.dart';
 import '../../../../core/utils/delete file.dart';
+import '../../data/model/folder items.dart';
 import '../../domain/entites/file properties.dart';
 import '../../domain/entites/uploaded file properties.dart';
 import '../../domain/usecase/get all items use case.dart';
@@ -17,8 +20,10 @@ import '../../domain/usecase/upload file use case.dart';
 
 class HomePageController extends GetxController{
   RxBool folderView = false.obs;
-  RxBool isRight = true.obs;
-  RxString errorMessage = ''.obs;
+  RxBool getAllItemsSuccess = true.obs;
+  RxBool getItemsByFolderSuccess = true.obs;
+  RxString allFilesErrorMessage = ''.obs;
+  RxString folderFilesErrorMessage = ''.obs;
   RxBool isLoading = false.obs;
   RxBool isDeleting = false.obs;
   void toggleView(){
@@ -27,7 +32,8 @@ class HomePageController extends GetxController{
 
 
   //HomePageRemoteDataSource homePageRemoteDataSource = HomePageRemoteDataSource();
-  RxList<FolderItems> files = <FolderItems>[].obs;
+  RxList<FolderItems> allFiles = <FolderItems>[].obs;
+  RxList<FolderItems> folderFiles = <FolderItems>[].obs;
  /* load()async{
     files.value = await homePageRemoteDataSource.getAllItems();
     Logger().i(files.value);
@@ -38,13 +44,12 @@ class HomePageController extends GetxController{
     Either<Failure, List<FolderItems>> data = await sl<GetAllItemsUseCase>().execute();
     Logger().i('data is $data');
     data.fold((l) {
-      errorMessage.value = l.message;
-      isRight.value = false;
+      allFilesErrorMessage.value = l.message;
+      getAllItemsSuccess.value = false;
     }, (r) {
-      isRight.value = true;
-      files.value = r;
+      allFiles.value = r;
     });
-  Logger().i('filsssssssssssssssssssssssssss $files');
+  Logger().i('filsssssssssssssssssssssssssss $allFiles');
     isLoading.value = false;
   }
 
@@ -68,5 +73,20 @@ class HomePageController extends GetxController{
     isDeleting.value = false;
   }
 
+  Future<void> getItemsByFolder(FolderProperties folder)async{
+    Either<Failure, List<FolderItems>> response = await sl<GetItemsByFolderUseCase>().execute(folder);
+     response.fold(
+        (l) {
+          folderFilesErrorMessage.value = l.message;
+          getItemsByFolderSuccess.value = false;
+
+        },
+        (r) {
+           folderFiles.value = r;
+        }
+    );
+
+
+  }
 
 }
