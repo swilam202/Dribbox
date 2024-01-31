@@ -22,6 +22,7 @@ import 'package:logger/logger.dart';
 import '../../../../core/models/folder items.dart';
 import '../../../../core/services/service locator.dart';
 import '../../../../core/utils/file picker.dart';
+import '../../../../main.dart';
 import '../../data/model/file properties model.dart';
 import '../../data/model/uploaded file properties model.dart';
 import '../../domain/entites/file properties.dart';
@@ -47,7 +48,7 @@ class HomePage extends StatelessWidget {
               children: [
                 const SizedBox(height: 20),
                 Text(
-                  'Your dribbox',
+                  "Your Dribbox",
                   style: StyleManager.bigTextStyle(
                     fontWeight: FontWeightManager.semiBoldWeight,
                     fontSize: 24,
@@ -114,7 +115,26 @@ class HomePage extends StatelessWidget {
 
 
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton:BlocBuilder<HomePageCubit, HomePageState>(
+  builder: (context, state) {
+  return FloatingActionButton(
+  backgroundColor: ColorManager.blueColor,
+  shape: CircleBorder(),
+  onPressed: (state is HomePageLoadingState)
+  ?null
+      : () async {
+    await BlocProvider.of<HomePageCubit>(context).uploadFile(context);
+
+  },
+  child: (state is HomePageLoadingState)
+  ? CircularProgressIndicator(color: Colors.white)
+      : Icon(Icons.cloud_upload, color: ColorManager.whiteColor),
+  );
+  },
+  ),
+
+
+  /* FloatingActionButton(
         backgroundColor: ColorManager.blueColor,
        shape: CircleBorder(),
         onPressed: ()async{
@@ -150,7 +170,7 @@ class HomePage extends StatelessWidget {
         },
 
         child: const Icon(Icons.cloud_upload,color: ColorManager.whiteColor),
-      ),
+      ),*/
     );
   }
 }

@@ -9,6 +9,7 @@ import '../../data/model/folder items.dart';
 
 abstract class HomePageBaseRepository{
   Future<Either<Failure,FileProperties>> pickFile();
+  Future<Either<Failure,FileProperties>> pickFolderByFile(FolderProperties folder);
   Future<Either<Failure,UploadedFileProperties>> uploadFile(FileProperties file);
   Future<Either<Failure,List<FolderItems>>> getAllItems();
   Future<Either<Failure,List<FolderItems>>> getItemsByFolder(FolderProperties folder);

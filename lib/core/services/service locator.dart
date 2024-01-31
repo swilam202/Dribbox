@@ -8,6 +8,7 @@ import 'package:get_it/get_it.dart';
 
 import '../../features/home feature/data/data source/home page base local data source.dart';
 import '../../features/home feature/data/repository/home page repository.dart';
+import '../../features/home feature/domain/usecase/pick file by folder use case.dart';
 import '../../features/home feature/domain/usecase/upload file use case.dart';
 import '../resources/folders.dart';
 
@@ -36,6 +37,7 @@ class ServiceLocator {
     sl.registerLazySingleton<GetAllItemsUseCase>(() => GetAllItemsUseCase(sl()));
     sl.registerLazySingleton<UploadFileUseCase>(() => UploadFileUseCase(sl()));
     sl.registerLazySingleton<PickFileUseCase>(() => PickFileUseCase(sl()));
+    sl.registerLazySingleton<PickFileByFolderUseCase>(() => PickFileByFolderUseCase(sl()));
     sl.registerLazySingleton<GetItemsByFolderUseCase>(() => GetItemsByFolderUseCase(sl()));
 
   }

@@ -17,12 +17,16 @@ class AuthController extends GetxController {
   final GlobalKey<FormState> loginKey = GlobalKey();
   final GlobalKey<FormState> otpKey = GlobalKey();
 
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController otpController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController otpController = TextEditingController();
 
   final FirebaseAuth auth = FirebaseAuth.instance;
 
   List<String> pinList = [];
+
+
+
 
   Future<void> registrationFunction() async {
     Logger().i('signUpFunction ${phoneController.text}');
@@ -61,6 +65,7 @@ class AuthController extends GetxController {
       Logger().i(a.user!.phoneNumber.toString());
       Logger().i(a.user!.uid.toString());
       writeData('phone', '+2${phoneController.text}');
+
       await createFirestoreUser();
       CustomNavigation.pushReplacement(HomePage());
     } on FirebaseAuthException catch (e) {

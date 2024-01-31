@@ -20,8 +20,9 @@ class HomePageRepository extends HomePageBaseRepository{
 
   @override
   Future<Either<Failure, FilePropertiesModel>> pickFile() async{
-    final FilePropertiesModel model = await homePageBaseLocalDataSource.pickFile();
     try{
+      final FilePropertiesModel model = await homePageBaseLocalDataSource.pickFile();
+
       return Right(model);
     }
     on Failure catch(ex){
@@ -30,9 +31,23 @@ class HomePageRepository extends HomePageBaseRepository{
   }
 
   @override
-  Future<Either<Failure, UploadedFileProperties>> uploadFile(FileProperties file) async{
-    final UploadedFilePropertiesModel model = await homePageBaseRemoteDataSource.uploadFile(file);
+  Future<Either<Failure, FileProperties>> pickFolderByFile(FolderProperties folder) async{
     try{
+      final FilePropertiesModel model = await homePageBaseLocalDataSource.pickFolderFile(folder);
+
+      return Right(model);
+    }
+    on Failure catch(ex){
+      return Left(ex);
+    }
+  }
+
+
+  @override
+  Future<Either<Failure, UploadedFileProperties>> uploadFile(FileProperties file) async{
+    try{
+      final UploadedFilePropertiesModel model = await homePageBaseRemoteDataSource.uploadFile(file);
+
       return Right(model);
     }
     catch(ex){
@@ -42,8 +57,9 @@ class HomePageRepository extends HomePageBaseRepository{
 
   @override
   Future<Either<Failure, List<FolderItems>>> getAllItems() async{
-    final List<FolderItemsModel> model = await homePageBaseRemoteDataSource.getAllItems();
     try{
+      final List<FolderItemsModel> model = await homePageBaseRemoteDataSource.getAllItems();
+
       return Right(model);
     }
     catch(ex){
@@ -53,14 +69,19 @@ class HomePageRepository extends HomePageBaseRepository{
 
   @override
   Future<Either<Failure, List<FolderItems>>> getItemsByFolder(FolderProperties folder) async{
-    final List<FolderItems> model = await homePageBaseRemoteDataSource.getItemsByFolder(folder);
     try{
+      final List<FolderItems> model = await homePageBaseRemoteDataSource.getItemsByFolder(folder);
+
       return Right(model);
     }
     catch(ex){
       return const Left(Failure('There was an error while uploading file please try again!'));
     }
   }
+
+
+
+
 
 
 

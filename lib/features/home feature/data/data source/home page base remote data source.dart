@@ -49,7 +49,7 @@ files.add({
     });
     Logger().f('after files $files');
 
-    await user.set({
+    await user.update({
       'files': files,
     });
     return UploadedFilePropertiesModel(file.name, type, url, file.size);

@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dribbox/core/resources/folders.dart';
+import 'package:dribbox/features/home%20feature/domain/usecase/pick%20file%20by%20folder%20use%20case.dart';
 import 'package:dribbox/features/home%20feature/presentation/controller/folder%20files%20controller/folder%20files%20cubit.dart';
 import 'package:dribbox/features/home%20feature/presentation/controller/load%20all%20data%20controller/load%20all%20data%20cubit.dart';
 import 'package:flutter/cupertino.dart';
@@ -31,6 +32,24 @@ class HomePageCubit extends Cubit<HomePageState>{
           emit(HomePageSuccessState('File uploaded successfully'));
           await BlocProvider.of<LoadAllDataCubit>(context).loadAllData();
          /// await BlocProvider.of<FolderFilesCubit>(context).loadAllData();
+
+        });
+      });
+
+
+
+  }
+
+  uploadFileByFolder(BuildContext context,FolderProperties folder)async{
+    emit(HomePageLoadingState());
+      Either<Failure, FileProperties> file = await sl<PickFileByFolderUseCase>().execute(folder);
+      file.fold((l)=>emit(HomePageFailureState(l.message)), (r) async{
+        Either<Failure, UploadedFileProperties> data = await sl<UploadFileUseCase>().execute(r);
+        data.fold((l)=>emit(HomePageFailureState(l.message)), (r)async{
+          emit(HomePageSuccessState('File uploaded successfully'));
+          await BlocProvider.of<LoadAllDataCubit>(context).loadAllData();
+          await BlocProvider.of<FolderFilesCubit>(context).getItemsByFolder(folder);
+          /// await BlocProvider.of<FolderFilesCubit>(context).loadAllData();
 
         });
       });
