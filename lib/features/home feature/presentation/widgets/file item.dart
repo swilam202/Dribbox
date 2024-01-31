@@ -56,7 +56,7 @@ class FileItem extends StatelessWidget {
             ),
             trailing: IconButton(
               onPressed: ()async{
-                await  BlocProvider.of<HomePageCubit>(context).deleteFile(context,file,index);
+                await  BlocProvider.of<HomePageCubit>(context).deleteFile(context,file,index,folder);
 
 
               }, /*homePageController.isDeleting.value == true? null:()async{

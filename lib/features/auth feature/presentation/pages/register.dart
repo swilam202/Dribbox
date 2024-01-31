@@ -1,4 +1,5 @@
 import 'package:dribbox/features/auth%20feature/presentation/controller/auth%20controller.dart';
+import 'package:dribbox/features/auth%20feature/presentation/widgets/auth%20custom%20appbar.dart';
 import 'package:dribbox/features/home%20feature/presentation/pages/home%20page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,7 +11,6 @@ import '../../../../core/services/service locator.dart';
 import '../../../../core/utils/custom navigation.dart';
 import '../../../../core/widgets/custom button.dart';
 import '../../../../core/widgets/custom text form field.dart';
-import '../widgets/auth page custom appbar.dart';
 
 
 class RegisterPage extends StatelessWidget {
@@ -20,7 +20,7 @@ class RegisterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final AuthController authController = Get.put(AuthController());
     return  Scaffold(
-      appBar: authPageCustomAppBar('Register'),
+      appBar: authCustomAppBar('Register'),
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 24),

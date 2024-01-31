@@ -12,4 +12,7 @@ class CustomNavigation{
   static void pushReplacement(Widget page){
     Get.offAll(page,duration: _duration,transition: _transition,curve: _curve);
   }
+  static void pop(){
+    Get.back();
+  }
 }

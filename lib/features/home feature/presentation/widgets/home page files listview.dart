@@ -1,5 +1,7 @@
+import 'package:dribbox/core/resources/color%20manager.dart';
 import 'package:dribbox/core/resources/folders.dart';
 import 'package:dribbox/core/widgets/file%20item.dart';
+import 'package:dribbox/core/widgets/loading%20state.dart';
 import 'package:dribbox/features/home%20feature/presentation/controller/home%20page%20controller.dart';
 import 'package:dribbox/features/home%20feature/presentation/controller/load%20all%20data%20controller/load%20all%20data%20cubit.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +57,7 @@ class _HomePageFilesListviewState extends State<HomePageFilesListview> {
           return Center(child: Text(state.errorMessage));
         }
         else{
-          return const Center(child: CircularProgressIndicator());
+          return LoadingState(color: ColorManager.blueColor);
         }
       },
     );

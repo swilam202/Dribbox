@@ -1,4 +1,6 @@
 import 'package:dartz/dartz.dart';
+import 'package:dribbox/core/resources/folders.dart';
+import 'package:dribbox/features/home%20feature/presentation/controller/folder%20files%20controller/folder%20files%20cubit.dart';
 import 'package:dribbox/features/home%20feature/presentation/controller/load%20all%20data%20controller/load%20all%20data%20cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,6 +30,7 @@ class HomePageCubit extends Cubit<HomePageState>{
         data.fold((l)=>emit(HomePageFailureState(l.message)), (r)async{
           emit(HomePageSuccessState('File uploaded successfully'));
           await BlocProvider.of<LoadAllDataCubit>(context).loadAllData();
+         /// await BlocProvider.of<FolderFilesCubit>(context).loadAllData();
 
         });
       });
@@ -44,13 +47,15 @@ class HomePageCubit extends Cubit<HomePageState>{
 
 
 
-   deleteFile(BuildContext context,FolderItems file,int index)async{
+   deleteFile(BuildContext context,FolderItems file,int index,FolderProperties folder)async{
      itemIndex = index;
 
      emit(HomePageDeleteLoadingState());
     try{
       await deleteFileFunction(file);
       await BlocProvider.of<LoadAllDataCubit>(context).loadAllData();
+      await BlocProvider.of<FolderFilesCubit>(context).getItemsByFolder(folder);
+
       emit(HomePageDeleteSuccessState('File deleted successfully'));
 
     }

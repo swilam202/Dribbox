@@ -1,6 +1,6 @@
 import 'package:dribbox/core/resources/style%20manager.dart';
 import 'package:dribbox/features/auth%20feature/presentation/controller/auth%20controller.dart';
-import 'package:dribbox/features/auth%20feature/presentation/widgets/auth%20page%20custom%20appbar.dart';
+import 'package:dribbox/features/auth%20feature/presentation/widgets/auth%20custom%20appbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,7 +20,7 @@ class OTPForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final AuthController authController = Get.put(AuthController());
     return Scaffold(
-      appBar: authPageCustomAppBar('OTP'),
+      appBar: authCustomAppBar('OTP'),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Form(
