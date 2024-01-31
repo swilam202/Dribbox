@@ -1,8 +1,10 @@
 import 'package:dribbox/core/resources/folders.dart';
 import 'package:dribbox/core/resources/font%20weight%20manager.dart';
 import 'package:dribbox/core/utils/custom%20navigation.dart';
+import 'package:dribbox/features/home%20feature/presentation/controller/folder%20files%20controller/folder%20files%20cubit.dart';
 import 'package:dribbox/features/home%20feature/presentation/pages/folder%20page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/resources/style manager.dart';
 
@@ -19,8 +21,9 @@ class HomePageFolder extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(20),
       splashColor: folder.color.withOpacity(0.05),
-      onTap: () {
-      //  CustomNavigation.push(FolderPage(folder: folder));
+      onTap: () async{
+       CustomNavigation.push(FolderPage(folder: folder));
+        ///Navigator.of(context).push(MaterialPageRoute(builder: (context) => FolderPage(folder: folder),));
       },
       child: Container(
         alignment: Alignment.center,

@@ -34,27 +34,30 @@ class Dribbox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          backgroundColor: ColorManager.whiteColor,
-        ),
-        scaffoldBackgroundColor: ColorManager.whiteColor,
-      ),
-      home: MultiBlocProvider(
+    return
+
+       MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context)=>HomePageCubit()),
-          BlocProvider(create: (context)=>FolderFilesCubit()),
-          BlocProvider(create: (context)=>LoadAllDataCubit()..loadAllData()),
+          BlocProvider<FolderFilesCubit>(create: (context)=>FolderFilesCubit()),
+          BlocProvider<HomePageCubit>(create: (context)=>HomePageCubit()),
+          BlocProvider<LoadAllDataCubit>(create: (context)=>LoadAllDataCubit()..loadAllData()),
         ],
-        child: PopScope(
-          canPop: false,
-          onPopInvoked: (val) async {
-            await showCustomDialog();
-          },
-          child: const HomePage(),
+        child: GetMaterialApp(
+          theme: ThemeData(
+            appBarTheme: const AppBarTheme(
+              backgroundColor: ColorManager.whiteColor,
+            ),
+            scaffoldBackgroundColor: ColorManager.whiteColor,
+          ),
+          home: PopScope(
+            canPop: false,
+            onPopInvoked: (val) async {
+              await showCustomDialog();
+            },
+            child: const HomePage(),
+          ),
         ),
-      )
-    );
+      );
+
   }
 }

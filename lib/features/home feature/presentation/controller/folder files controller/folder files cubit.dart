@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logger/logger.dart';
 
 import '../../../../../core/error/failure.dart';
 import '../../../../../core/resources/folders.dart';
@@ -21,5 +22,12 @@ class FolderFilesCubit extends Cubit<FolderFilesState>{
     );
 
 
+  }
+
+  @override
+  void onChange(Change<FolderFilesState> change) {
+    // TODO: implement onChange
+    super.onChange(change);
+    Logger().t(change);
   }
 }

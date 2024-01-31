@@ -17,7 +17,7 @@ import 'home page state.dart';
 class HomePageCubit extends Cubit<HomePageState>{
   HomePageCubit() : super(HomePageInitialState());
 
-  bool isAllView = true;
+  bool isAllView = false;
   int itemIndex = 0;
 
    uploadFile(BuildContext context)async{
