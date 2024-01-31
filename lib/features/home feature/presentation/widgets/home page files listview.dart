@@ -1,53 +1,61 @@
 import 'package:dribbox/core/resources/folders.dart';
 import 'package:dribbox/core/widgets/file%20item.dart';
 import 'package:dribbox/features/home%20feature/presentation/controller/home%20page%20controller.dart';
+import 'package:dribbox/features/home%20feature/presentation/controller/home%20page%20controller/load%20all%20data%20cubit.dart';
+import 'package:dribbox/features/home%20feature/presentation/controller/home%20page%20controller/load%20all%20data%20state.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/models/folder items.dart';
 import '../../../../core/services/service locator.dart';
 import '../../domain/entites/file properties.dart';
 import 'file item.dart';
 
-class HomePageFilesListview extends StatelessWidget {
+class HomePageFilesListview extends StatefulWidget {
   const HomePageFilesListview({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final HomePageController homePageController = Get.put(HomePageController());
-    return FutureBuilder(
-      future: homePageController.getAllItems(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        } else {
-          if(homePageController.getAllItemsSuccess.value == true){
-            return ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: homePageController.allFiles.length,
-                shrinkWrap: true,
-                itemBuilder: (context,index) {
-                  FolderProperties folderProperties = OtherFolderProperties();
-                  for (int i = 0; i <
-                      (sl<List<FolderProperties>>().length); i++) {
-                    if (homePageController.allFiles[index].type ==
-                        sl<List<FolderProperties>>()[i].name) {
-                      folderProperties = sl<List<FolderProperties>>()[i];
-                      break;
-                    }
-                  }
-                  return FileItem(folder: folderProperties, file: homePageController.allFiles[index]);
-                }
-            );
-          }
-          else{
-            return  Center(
-              child: Text(homePageController.allFilesErrorMessage.value),
-            );
-          }
+  State<HomePageFilesListview> createState() => _HomePageFilesListviewState();
+}
 
+class _HomePageFilesListviewState extends State<HomePageFilesListview> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    BlocProvider.of<LoadAllDataCubit>(context).loadAllData();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+  //  final HomePageController homePageController = Get.put(HomePageController());
+    return BlocBuilder<LoadAllDataCubit,LoadAllDataState>(
+      builder: (context, state) {
+        if(state is LoadAllDataSuccessState){
+          return ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: state.files.length,
+              shrinkWrap: true,
+              itemBuilder: (context,index) {
+                FolderProperties folderProperties = OtherFolderProperties();
+                for (int i = 0; i <
+                    (sl<List<FolderProperties>>().length); i++) {
+                  if (state.files[index].type ==
+                      sl<List<FolderProperties>>()[i].name) {
+                    folderProperties = sl<List<FolderProperties>>()[i];
+                    break;
+                  }
+                }
+                return FileItem(folder: folderProperties, file: state.files[index]);
+              }
+          );
+        }
+        else if(state is LoadAllDataFailureState){
+          return Center(child: Text(state.errorMessage));
+        }
+        else{
+          return const Center(child: CircularProgressIndicator());
         }
       },
     );

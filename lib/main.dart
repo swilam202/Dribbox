@@ -4,8 +4,12 @@ import 'package:dribbox/core/resources/style%20manager.dart';
 import 'package:dribbox/core/services/service%20locator.dart';
 import 'package:dribbox/core/widgets/custom%20dialog.dart';
 import 'package:dribbox/features/auth%20feature/presentation/pages/otp%20form.dart';
+import 'package:dribbox/features/home%20feature/presentation/controller/folder%20files%20controller/folder%20files%20cubit.dart';
+import 'package:dribbox/features/home%20feature/presentation/controller/home%20page%20controller/home%20page%20cubit.dart';
+import 'package:dribbox/features/home%20feature/presentation/controller/home%20page%20controller/load%20all%20data%20cubit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
 import 'core/utils/constants.dart';
@@ -37,13 +41,20 @@ class Dribbox extends StatelessWidget {
         ),
         scaffoldBackgroundColor: ColorManager.whiteColor,
       ),
-      home: PopScope(
-        canPop: false,
-        onPopInvoked: (val) async {
-          await showCustomDialog();
-        },
-        child: const HomePage(),
-      ),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context)=>HomePageCubit()),
+          BlocProvider(create: (context)=>FolderFilesCubit()),
+          BlocProvider(create: (context)=>LoadAllDataCubit()..loadAllData()),
+        ],
+        child: PopScope(
+          canPop: false,
+          onPopInvoked: (val) async {
+            await showCustomDialog();
+          },
+          child: const HomePage(),
+        ),
+      )
     );
   }
 }

@@ -2,16 +2,25 @@ import 'package:dribbox/core/resources/folders.dart';
 import 'package:dribbox/features/home%20feature/presentation/controller/home%20page%20controller.dart';
 import 'package:dribbox/features/home%20feature/presentation/widgets/file%20item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-
+/*
 class FolderPage extends StatelessWidget {
   const FolderPage({super.key,required this.folder});
   final FolderProperties folder;
   @override
   Widget build(BuildContext context) {
-    final HomePageController homePageController = Get.put(HomePageController());
+    //final HomePageController homePageController = Get.put(HomePageController());
     return Scaffold(
-        body: FutureBuilder(future: homePageController.getItemsByFolder(folder),
+
+      body: Center(
+        child: BlocConsumer<HomePageController,HomePageState>(
+          listener: (context, state) {},
+    builder: (context, state) {
+
+    },
+      ),
+         FutureBuilder(future: homePageController.getItemsByFolder(folder),
           builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -32,4 +41,4 @@ class FolderPage extends StatelessWidget {
         },)
     );
   }
-}
+}*/

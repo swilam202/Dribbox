@@ -20,7 +20,7 @@ class HomePageFolder extends StatelessWidget {
       borderRadius: BorderRadius.circular(20),
       splashColor: folder.color.withOpacity(0.05),
       onTap: () {
-        CustomNavigation.push(FolderPage(folder: folder));
+      //  CustomNavigation.push(FolderPage(folder: folder));
       },
       child: Container(
         alignment: Alignment.center,
