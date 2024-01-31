@@ -12,7 +12,7 @@ import 'package:dribbox/features/home%20feature/domain/usecase/pick%20file%20use
 import 'package:dribbox/features/home%20feature/presentation/controller/home%20page%20controller.dart';
 import 'package:dribbox/features/home%20feature/presentation/controller/home%20page%20controller/home%20page%20cubit.dart';
 import 'package:dribbox/features/home%20feature/presentation/controller/home%20page%20controller/home%20page%20state.dart';
-import 'package:dribbox/features/home%20feature/presentation/controller/home%20page%20controller/load%20all%20data%20cubit.dart';
+import 'package:dribbox/features/home%20feature/presentation/controller/load%20all%20data%20controller/load%20all%20data%20cubit.dart';
 import 'package:dribbox/features/home%20feature/presentation/widgets/home%20page%20folder%20grid.dart';
 import 'package:dribbox/features/home%20feature/presentation/widgets/home%20page%20folder.dart';
 import 'package:flutter/material.dart';
@@ -25,82 +25,86 @@ import '../../../../core/utils/file picker.dart';
 import '../../data/model/file properties model.dart';
 import '../../data/model/uploaded file properties model.dart';
 import '../../domain/entites/file properties.dart';
-import '../controller/home page controller/load all data state.dart';
 import '../widgets/home page files listview.dart';
 
 
 
-class HomePage extends StatefulWidget {
+
+
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-
-  updateUI(){
-    setState(() {});
-  }
   @override
   Widget build(BuildContext context) {
  // final HomePageController homePageController = Get.put(HomePageController());
     return Scaffold(
       body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          physics: const BouncingScrollPhysics(),
-          children: [
-            const SizedBox(height: 20),
-            Text(
-              'Your dribbox',
-              style: StyleManager.bigTextStyle(
-                fontWeight: FontWeightManager.semiBoldWeight,
-                fontSize: 24,
-              ),
-            ),
-            const SizedBox(height: 35),
-            Row(
+        child:  BlocBuilder<HomePageCubit,HomePageState>(
+          builder: (context, state) {
+           return ListView(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              physics: const BouncingScrollPhysics(),
               children: [
-                DropdownButton(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  value: false,
-                  onChanged: (val) {
-                    ///  homePageController.toggleView();
-                  },
-                  icon: const Icon(Icons.arrow_drop_down_sharp),
-                  items: [
-                    DropdownMenuItem(
-                      value: false,
-                      child: Text(
-                        'All',
-                        style: StyleManager.bigTextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeightManager.normalWeight,
+                const SizedBox(height: 20),
+                Text(
+                  'Your dribbox',
+                  style: StyleManager.bigTextStyle(
+                    fontWeight: FontWeightManager.semiBoldWeight,
+                    fontSize: 24,
+                  ),
+                ),
+                const SizedBox(height: 35),
+
+                Row(
+                  children: [
+                    DropdownButton(
+                      borderRadius: BorderRadius.circular(16),
+                      isDense: true,
+                      underline: const SizedBox(),
+
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      value: BlocProvider.of<HomePageCubit>(context).isAllView,
+                      onChanged: (val) {
+                        BlocProvider.of<HomePageCubit>(context).toggleView();
+                        ///  homePageController.toggleView();
+                      },
+                      icon: const Icon(Icons.arrow_drop_down_sharp),
+                      items: [
+                        DropdownMenuItem(
+                          value: true,
+                          child: Text(
+                            'All',
+                            style: StyleManager.bigTextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeightManager.normalWeight,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    DropdownMenuItem(
-                      value: true,
-                      child: Text(
-                        'Folder',
-                        style: StyleManager.bigTextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeightManager.normalWeight,
+                        DropdownMenuItem(
+                          value: false,
+                          child: Text(
+                            'Folder',
+                            style: StyleManager.bigTextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeightManager.normalWeight,
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ],
                 ),
+                const SizedBox(height: 25),
+                 BlocProvider.of<HomePageCubit>(context).isAllView
+                   ? HomePageFilesListview():const HomePageFolderGrid()
+                ,
+                const SizedBox(height: 20),
               ],
-            ),
-            const SizedBox(height: 25),
-            // homePageController.folderView.value
-            //   ? const HomePageFolderGrid():
-            HomePageFilesListview(),
-            const SizedBox(height: 20),
-          ],
+            );
+          },
+
         ),
+
 
 
 
@@ -112,7 +116,9 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: ColorManager.blueColor,
+       shape: CircleBorder(),
         onPressed: ()async{
+          await BlocProvider.of<HomePageCubit>(context).uploadFile(context);
        // await homePageController.uploadFile();
       /*    await homePageController.getAllItems();
       HomePageLocalDataSource homePageLocalDataSource = HomePageLocalDataSource();

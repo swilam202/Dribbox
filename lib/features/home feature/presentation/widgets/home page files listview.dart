@@ -1,14 +1,14 @@
 import 'package:dribbox/core/resources/folders.dart';
 import 'package:dribbox/core/widgets/file%20item.dart';
 import 'package:dribbox/features/home%20feature/presentation/controller/home%20page%20controller.dart';
-import 'package:dribbox/features/home%20feature/presentation/controller/home%20page%20controller/load%20all%20data%20cubit.dart';
-import 'package:dribbox/features/home%20feature/presentation/controller/home%20page%20controller/load%20all%20data%20state.dart';
+import 'package:dribbox/features/home%20feature/presentation/controller/load%20all%20data%20controller/load%20all%20data%20cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/models/folder items.dart';
 import '../../../../core/services/service locator.dart';
 import '../../domain/entites/file properties.dart';
+import '../controller/load all data controller/load all data state.dart';
 import 'file item.dart';
 
 class HomePageFilesListview extends StatefulWidget {
@@ -47,7 +47,7 @@ class _HomePageFilesListviewState extends State<HomePageFilesListview> {
                     break;
                   }
                 }
-                return FileItem(folder: folderProperties, file: state.files[index]);
+                return FileItem(folder: folderProperties, file: state.files[index],index: index,);
               }
           );
         }
