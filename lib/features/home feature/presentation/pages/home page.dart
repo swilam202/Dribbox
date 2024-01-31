@@ -22,6 +22,7 @@ import 'package:logger/logger.dart';
 import '../../../../core/models/folder items.dart';
 import '../../../../core/services/service locator.dart';
 import '../../../../core/utils/file picker.dart';
+import '../../../../core/utils/launch file.dart';
 import '../../../../main.dart';
 import '../../data/model/file properties model.dart';
 import '../../data/model/uploaded file properties model.dart';
@@ -39,6 +40,14 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
  // final HomePageController homePageController = Get.put(HomePageController());
     return Scaffold(
+      appBar: AppBar(
+        title: IconButton(
+          onPressed: ()async{
+            await launchFile();
+          },
+          icon: const Icon(Icons.cloud_upload),
+        ),
+      ),
       body: SafeArea(
         child:  BlocBuilder<HomePageCubit,HomePageState>(
           builder: (context, state) {
