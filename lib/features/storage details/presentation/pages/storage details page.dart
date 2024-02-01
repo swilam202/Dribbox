@@ -62,6 +62,7 @@ class _StorageDetailsPageState extends State<StorageDetailsPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    const SizedBox(height: 30),
                     ChartSection(state.sections),
                     const SizedBox(height: 27),
                     Text(

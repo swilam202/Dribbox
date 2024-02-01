@@ -11,3 +11,4 @@ Future<void> writeData(String key, String value) async {
 Future<String?> readData(String key) async {
   return await storage.read(key: key);
 }
+

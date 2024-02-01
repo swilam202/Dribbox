@@ -1,28 +1,40 @@
 import 'package:dribbox/core/resources/folders.dart';
 import 'package:dribbox/core/resources/font%20weight%20manager.dart';
+import 'package:dribbox/core/services/storage.dart';
 import 'package:dribbox/core/utils/custom%20navigation.dart';
 import 'package:dribbox/features/home%20feature/presentation/controller/folder%20files%20controller/folder%20files%20cubit.dart';
 import 'package:dribbox/features/home%20feature/presentation/pages/folder%20page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logger/logger.dart';
 
 import '../../../../core/resources/style manager.dart';
 
+
+
 class HomePageFolder extends StatelessWidget {
-  const HomePageFolder(this.folder,{
-    super.key
-  });
+
+  const HomePageFolder(this.folder,{super.key});
 
   final FolderProperties folder;
 
+  
+
+  
+
+  Future<String?> getDate()async{
+  String? date = await readData(folder.name);
+   Logger().i('dateeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee $date');
+   return date;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return FutureBuilder(future: getDate(), builder: (context, snapshot) => InkWell(
       borderRadius: BorderRadius.circular(20),
       splashColor: folder.color.withOpacity(0.05),
       onTap: () async{
-       CustomNavigation.push(FolderPage(folder: folder));
+        CustomNavigation.push(FolderPage(folder: folder));
         ///Navigator.of(context).push(MaterialPageRoute(builder: (context) => FolderPage(folder: folder),));
       },
       child: Container(
@@ -51,7 +63,7 @@ class HomePageFolder extends StatelessWidget {
             ),
             const SizedBox(height: 3),
             Text(
-              'December 20.2020',
+              snapshot.data ?? '',
               style: StyleManager.smallTextStyle(
                 fontSize: 10,
                 color: folder.color.withOpacity(0.9),
@@ -61,6 +73,6 @@ class HomePageFolder extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ),);
   }
 }
