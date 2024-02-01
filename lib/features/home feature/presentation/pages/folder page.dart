@@ -6,6 +6,7 @@ import 'package:dribbox/features/home%20feature/presentation/controller/home%20p
 import 'package:dribbox/features/home%20feature/presentation/widgets/file%20item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 import '../controller/folder files controller/folder file states.dart';
 import '../controller/folder files controller/folder files cubit.dart';
@@ -46,10 +47,20 @@ class _FolderPageState extends State<FolderPage> {
               itemCount: state.files.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                return FileItem(
-                    folder: widget.folder,
-                    file: state.files[index],
-                    index: index);
+                return AnimationConfiguration.staggeredList(
+                  duration: const Duration(milliseconds: 1500),
+                  position: index,
+                  child: SlideAnimation(
+                    verticalOffset: 500,
+                    horizontalOffset: -500,
+                    child: FadeInAnimation(
+                      child: FileItem(
+                          folder: widget.folder,
+                          file: state.files[index],
+                          index: index),
+                    ),
+                  ),
+                );
               },
             );
           } else if (state is FolderFilesFailureState) {

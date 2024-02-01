@@ -66,7 +66,7 @@ class _StorageDetailsPageState extends State<StorageDetailsPage> {
                     ChartSection(state.sections),
                     const SizedBox(height: 27),
                     Text(
-                      'Available',
+                      'Used Storage',
                       style: StyleManager.smallTextStyle(
                         fontSize: 20,
                         fontWeight: FontWeightManager.normalWeight,
@@ -87,6 +87,8 @@ class _StorageDetailsPageState extends State<StorageDetailsPage> {
                     ),
                     const SizedBox(height: 44),
                     TypesSection(state.sections),
+                    const SizedBox(height: 20),
+
                   ],
                 ),
               );
