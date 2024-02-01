@@ -40,14 +40,14 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
  // final HomePageController homePageController = Get.put(HomePageController());
     return Scaffold(
-      appBar: AppBar(
+     /* appBar: AppBar(
         title: IconButton(
           onPressed: ()async{
             await launchFile();
           },
           icon: const Icon(Icons.cloud_upload),
         ),
-      ),
+      ),*/
       body: SafeArea(
         child:  BlocBuilder<HomePageCubit,HomePageState>(
           builder: (context, state) {

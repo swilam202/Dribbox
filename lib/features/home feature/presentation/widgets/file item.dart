@@ -3,6 +3,7 @@ import 'package:dribbox/core/resources/color%20manager.dart';
 import 'package:dribbox/core/resources/folders.dart';
 import 'package:dribbox/core/resources/style%20manager.dart';
 import 'package:dribbox/core/utils/delete%20file.dart';
+import 'package:dribbox/core/utils/launch%20file.dart';
 import 'package:dribbox/core/utils/toast%20status.dart';
 import 'package:dribbox/core/widgets/custom%20toast.dart';
 import 'package:dribbox/features/home%20feature/domain/entites/file%20properties.dart';
@@ -54,20 +55,33 @@ class FileItem extends StatelessWidget {
                 Text(calculateSize(file.size),style: StyleManager.smallTextStyle()),
               ],
             ),
-            trailing: IconButton(
-              onPressed: ()async{
-                await  BlocProvider.of<HomePageCubit>(context).deleteFile(context,file,index,folder);
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+
+                  onPressed: ()async{
+                    await  BlocProvider.of<HomePageCubit>(context).deleteFile(context,file,index,folder);
 
 
-              }, /*homePageController.isDeleting.value == true? null:()async{
+                  }, /*homePageController.isDeleting.value == true? null:()async{
             await homePageController.deleteFile(file);
           },*/
-              icon: (state is HomePageDeleteLoadingState && (index == BlocProvider.of<HomePageCubit>(context).itemIndex))? CircularProgressIndicator(color: ColorManager.redColor,):Icon(Icons.delete,color: ColorManager.redColor,),
+                  icon: (state is HomePageDeleteLoadingState && (index == BlocProvider.of<HomePageCubit>(context).itemIndex))? CircularProgressIndicator(color: ColorManager.redColor,):Icon(Icons.delete,color: ColorManager.redColor,),
 
 
 
-              // homePageController.isDeleting.value == true?const CircularProgressIndicator(color: ColorManager.redColor):const Icon(Icons.delete,color: ColorManager.redColor,),
-            ),);
+                  // homePageController.isDeleting.value == true?const CircularProgressIndicator(color: ColorManager.redColor):const Icon(Icons.delete,color: ColorManager.redColor,),
+                ),IconButton(
+                  onPressed: ()async{
+                    await launchFile(file.url);
+                  },
+                  icon: const Icon(Icons.cloud_download_rounded,color: ColorManager.blueColor,),
+                ),
+
+              ],
+            )
+          );
         },
 
     );

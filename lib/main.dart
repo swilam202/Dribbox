@@ -8,6 +8,7 @@ import 'package:dribbox/features/auth%20feature/presentation/pages/otp%20form.da
 import 'package:dribbox/features/home%20feature/presentation/controller/folder%20files%20controller/folder%20files%20cubit.dart';
 import 'package:dribbox/features/home%20feature/presentation/controller/home%20page%20controller/home%20page%20cubit.dart';
 import 'package:dribbox/features/home%20feature/presentation/controller/load%20all%20data%20controller/load%20all%20data%20cubit.dart';
+import 'package:dribbox/features/storage%20details/presentation/controller/storage%20details%20cubit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,6 +44,7 @@ class Dribbox extends StatelessWidget {
         providers: [
           BlocProvider<FolderFilesCubit>(create: (context)=>FolderFilesCubit()),
           BlocProvider<HomePageCubit>(create: (context)=>HomePageCubit()),
+          BlocProvider<StorageDetailsCubit>(create: (context)=>StorageDetailsCubit()),
           BlocProvider<LoadAllDataCubit>(create: (context)=>LoadAllDataCubit()..loadAllData()),
         ],
         child: GetMaterialApp(
@@ -57,7 +59,7 @@ class Dribbox extends StatelessWidget {
             onPopInvoked: (val) async {
               await showCustomDialog();
             },
-            child: const HomePage(),
+            child: const SplashPage(),
           ),
         ),
       );

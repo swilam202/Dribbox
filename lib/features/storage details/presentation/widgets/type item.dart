@@ -34,8 +34,9 @@ class TypeItem extends StatelessWidget {
           child: SizedBox(
             width: MediaQuery.of(context).size.width * 0.5,
             child: LinearProgressIndicator(
-              value: section.value / 2000,
+              value: section.value / 1073741824,
               color: section.color,
+              backgroundColor: section.color.withOpacity(0.2),
             ),
           ),
         ),

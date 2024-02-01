@@ -33,6 +33,16 @@ class HomePageRemoteDataSource extends HomePageBaseRemoteDataSource {
     Logger().f('resssssssssss ${res}');
     Logger().f('resssssssssss ${res.state}');
     String url = await reference.getDownloadURL();
+    /*var a =  reference.bucket;
+    var b =  reference.fullPath;
+    var c = reference.storage.bucket;
+    var d = await reference.getMetadata();
+    var e =  d.fullPath;
+    Logger().e('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa $a');
+    Logger().e('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb $b');
+    Logger().e('cccccccccccccccccccccccccccccccc $c');
+    Logger().e('dddddddddddddddddddddddddddddddd $d');
+    Logger().e('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee $e');*/
     String type = getFileType(file.name);
     Logger().f('urlllllllllllll $url');
     Logger().f('typeeeeeeeeeeeee $type');
