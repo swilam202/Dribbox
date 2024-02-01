@@ -3,6 +3,9 @@ import 'package:dribbox/core/resources/color%20manager.dart';
 import 'package:dribbox/core/resources/folders.dart';
 import 'package:dribbox/core/resources/font%20weight%20manager.dart';
 import 'package:dribbox/core/resources/style%20manager.dart';
+import 'package:dribbox/core/utils/constants.dart';
+import 'package:dribbox/core/utils/custom%20navigation.dart';
+import 'package:dribbox/core/widgets/custom%20drawer.dart';
 import 'package:dribbox/features/folder%20feature/data/data%20source/folder%20page%20base%20data%20source.dart';
 import 'package:dribbox/features/home%20feature/data/data%20source/home%20page%20base%20local%20data%20source.dart';
 import 'package:dribbox/features/home%20feature/data/data%20source/home%20page%20base%20remote%20data%20source.dart';
@@ -15,7 +18,9 @@ import 'package:dribbox/features/home%20feature/presentation/controller/home%20p
 import 'package:dribbox/features/home%20feature/presentation/controller/load%20all%20data%20controller/load%20all%20data%20cubit.dart';
 import 'package:dribbox/features/home%20feature/presentation/widgets/home%20page%20folder%20grid.dart';
 import 'package:dribbox/features/home%20feature/presentation/widgets/home%20page%20folder.dart';
+import 'package:dribbox/features/storage%20details/presentation/pages/storage%20details%20page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
 
@@ -39,8 +44,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
  // final HomePageController homePageController = Get.put(HomePageController());
-    return Scaffold(
-     /* appBar: AppBar(
+    //final _advancedDrawerController = AdvancedDrawerController();
+
+    return CustomDrawer(child: Scaffold(
+      /* appBar: AppBar(
         title: IconButton(
           onPressed: ()async{
             await launchFile();
@@ -51,7 +58,7 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
         child:  BlocBuilder<HomePageCubit,HomePageState>(
           builder: (context, state) {
-           return ListView(
+            return ListView(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               physics: const BouncingScrollPhysics(),
               children: [
@@ -105,8 +112,8 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 25),
-                 BlocProvider.of<HomePageCubit>(context).isAllView
-                   ? HomePageFilesListview():const HomePageFolderGrid()
+                BlocProvider.of<HomePageCubit>(context).isAllView
+                    ? HomePageFilesListview():const HomePageFolderGrid()
                 ,
                 const SizedBox(height: 20),
               ],
@@ -125,25 +132,25 @@ class HomePage extends StatelessWidget {
 
       ),
       floatingActionButton:BlocBuilder<HomePageCubit, HomePageState>(
-  builder: (context, state) {
-  return FloatingActionButton(
-  backgroundColor: ColorManager.blueColor,
-  shape: CircleBorder(),
-  onPressed: (state is HomePageLoadingState)
-  ?null
-      : () async {
-    await BlocProvider.of<HomePageCubit>(context).uploadFile(context);
+        builder: (context, state) {
+          return FloatingActionButton(
+            backgroundColor: ColorManager.blueColor,
+            shape: CircleBorder(),
+            onPressed: (state is HomePageLoadingState)
+                ?null
+                : () async {
+              await BlocProvider.of<HomePageCubit>(context).uploadFile(context);
 
-  },
-  child: (state is HomePageLoadingState)
-  ? CircularProgressIndicator(color: Colors.white)
-      : Icon(Icons.cloud_upload, color: ColorManager.whiteColor),
-  );
-  },
-  ),
+            },
+            child: (state is HomePageLoadingState)
+                ? CircularProgressIndicator(color: Colors.white)
+                : Icon(Icons.cloud_upload, color: ColorManager.whiteColor),
+          );
+        },
+      ),
 
 
-  /* FloatingActionButton(
+      /* FloatingActionButton(
         backgroundColor: ColorManager.blueColor,
        shape: CircleBorder(),
         onPressed: ()async{
@@ -180,6 +187,8 @@ class HomePage extends StatelessWidget {
 
         child: const Icon(Icons.cloud_upload,color: ColorManager.whiteColor),
       ),*/
-    );
+
+
+    ),);
   }
 }
