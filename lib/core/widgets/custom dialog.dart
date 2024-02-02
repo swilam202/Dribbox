@@ -1,10 +1,10 @@
-import 'package:dribbox/core/resources/font%20weight%20manager.dart';
-import 'package:dribbox/core/resources/style%20manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../resources/color manager.dart';
+import '../resources/font weight manager.dart';
+import '../resources/style manager.dart';
 
 Future<void> showCustomDialog() async {
   await Get.defaultDialog(

@@ -1,14 +1,11 @@
-import 'package:dribbox/core/resources/style%20manager.dart';
-import 'package:dribbox/features/auth%20feature/presentation/controller/auth%20controller.dart';
-import 'package:dribbox/features/auth%20feature/presentation/widgets/auth%20custom%20appbar.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 
 import '../../../../core/resources/color manager.dart';
-import '../../../../core/services/service locator.dart';
+import '../../../../core/resources/style manager.dart';
 import '../../../../core/widgets/custom button.dart';
+import '../controller/auth controller.dart';
+import '../widgets/auth custom appbar.dart';
 import '../widgets/otp field.dart';
 
 class OTPForm extends StatelessWidget {
@@ -29,14 +26,6 @@ class OTPForm extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              /*Container(
-                height: 50,
-                width: double.infinity,
-                child: TextField(
-                  controller: controller,
-                ),
-
-              ),*/
               Text(
                 'Enter Verification Code',
                 style: StyleManager.bigTextStyle(fontSize: 24),
@@ -69,7 +58,9 @@ class OTPForm extends StatelessWidget {
                   OTPField(isLast: false),
                   OTPField(isLast: false),
                   OTPField(isLast: false),
-                  OTPField(isLast: true,),
+                  OTPField(
+                    isLast: true,
+                  ),
                 ],
               ),
               const SizedBox(height: 40),
@@ -83,13 +74,13 @@ class OTPForm extends StatelessWidget {
                 onPressed: () async {
                   authController.pinList.clear();
 
-                 if(authController.otpKey.currentState!.validate()){
-                   authController.otpKey.currentState!.save();
-                   String smsCode = authController.pinList.join();
+                  if (authController.otpKey.currentState!.validate()) {
+                    authController.otpKey.currentState!.save();
+                    String smsCode = authController.pinList.join();
 
-                   await authController.otpFunction(verificationId, smsCode);
-                 }
-                 },
+                    await authController.otpFunction(verificationId, smsCode);
+                  }
+                },
               ),
               const SizedBox(height: 24),
               Row(

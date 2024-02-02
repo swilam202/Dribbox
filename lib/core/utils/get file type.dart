@@ -1,5 +1,3 @@
-import 'package:logger/logger.dart';
-
 import '../resources/folders.dart';
 import '../services/service locator.dart';
 
@@ -17,6 +15,5 @@ String getFileType(String name) {
       }
     }
   }
-Logger().f('folderNameeeeee $folderName');
   return folderName;
 }

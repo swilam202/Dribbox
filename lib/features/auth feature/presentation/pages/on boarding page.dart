@@ -1,13 +1,12 @@
-import 'package:dribbox/core/utils/custom%20navigation.dart';
-import 'package:dribbox/features/auth%20feature/presentation/pages/register.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/resources/color manager.dart';
 import '../../../../core/resources/font weight manager.dart';
 import '../../../../core/resources/style manager.dart';
 import '../../../../core/utils/constants.dart';
+import '../../../../core/utils/custom navigation.dart';
 import '../widgets/auth button.dart';
+import 'register.dart';
 
 class OnBoardingPage extends StatelessWidget {
   const OnBoardingPage({super.key});
@@ -18,17 +17,18 @@ class OnBoardingPage extends StatelessWidget {
       body: Center(
         child: SingleChildScrollView(
           child: Column(
-
             children: [
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.25,
                 child: AspectRatio(
                   aspectRatio: 1,
-                  child: Image.asset(kLogo,fit: BoxFit.fill,),
+                  child: Image.asset(
+                    kLogo,
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
               const SizedBox(height: 30),
-
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: Column(
@@ -61,7 +61,6 @@ class OnBoardingPage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-
                         const SizedBox(width: 14),
                         AuthButton(
                           icon: Icons.arrow_forward_ios,

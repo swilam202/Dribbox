@@ -1,17 +1,15 @@
-import 'package:dribbox/core/resources/color%20manager.dart';
-import 'package:dribbox/core/resources/font%20weight%20manager.dart';
-import 'package:dribbox/core/resources/style%20manager.dart';
-import 'package:dribbox/core/utils/calculate%20size.dart';
-import 'package:dribbox/core/widgets/custom%20drawer.dart';
-import 'package:dribbox/core/widgets/loading%20state.dart';
-import 'package:dribbox/features/storage%20details/presentation/controller/storage%20details%20cubit.dart';
-import 'package:dribbox/features/storage%20details/presentation/controller/storage%20details%20state.dart';
-import 'package:dribbox/features/storage%20details/presentation/widgets/chart%20section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 
-import '../../domain/entites/section.dart';
+import '../../../../core/resources/color manager.dart';
+import '../../../../core/resources/font weight manager.dart';
+import '../../../../core/resources/style manager.dart';
+import '../../../../core/utils/calculate size.dart';
+import '../../../../core/widgets/custom drawer.dart';
+import '../../../../core/widgets/loading state.dart';
+import '../controller/storage details cubit.dart';
+import '../controller/storage details state.dart';
+import '../widgets/chart section.dart';
 import '../widgets/types section.dart';
 
 class StorageDetailsPage extends StatefulWidget {
@@ -22,7 +20,6 @@ class StorageDetailsPage extends StatefulWidget {
 }
 
 class _StorageDetailsPageState extends State<StorageDetailsPage> {
-
   @override
   void initState() {
     // TODO: implement initState
@@ -32,28 +29,23 @@ class _StorageDetailsPageState extends State<StorageDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-  /*  final List<Section> sections = [
-      Section('Video', 300, Colors.blue),
-      Section('Audio', 500, Colors.orange),
-      Section('Mobile apps', 400, Colors.green),
-      Section('Files', 1000, Colors.amber),
-    ];*/
-    return CustomDrawer(child: Scaffold(
-       appBar: AppBar(
-        title: Text(
-          'Storage details',
-          style: StyleManager.bigTextStyle(
-            fontSize: 20,
-            fontWeight: FontWeightManager.semiBoldWeight,
+    return CustomDrawer(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Storage details',
+            style: StyleManager.bigTextStyle(
+              fontSize: 20,
+              fontWeight: FontWeightManager.semiBoldWeight,
+            ),
           ),
+          centerTitle: true,
+          automaticallyImplyLeading: false,
+          elevation: 0,
         ),
-        centerTitle: true,
-        automaticallyImplyLeading: false,
-        elevation: 0,
-      ),
-        body: BlocBuilder<StorageDetailsCubit,StorageDetailsState>(
+        body: BlocBuilder<StorageDetailsCubit, StorageDetailsState>(
           builder: (context, state) {
-            if(state is StorageDetailsSuccessState){
+            if (state is StorageDetailsSuccessState) {
               return SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: Column(
@@ -85,12 +77,10 @@ class _StorageDetailsPageState extends State<StorageDetailsPage> {
                     const SizedBox(height: 44),
                     TypesSection(state.sections),
                     const SizedBox(height: 20),
-
                   ],
                 ),
               );
-            }
-            else if(state is StorageDetailsFailureState){
+            } else if (state is StorageDetailsFailureState) {
               return Center(
                 child: Text(
                   state.errorMessage,
@@ -100,13 +90,12 @@ class _StorageDetailsPageState extends State<StorageDetailsPage> {
                   ),
                 ),
               );
-            }
-            else{
+            } else {
               return const LoadingState(color: ColorManager.blueColor);
             }
-
           },
-        )
-    ),);
+        ),
+      ),
+    );
   }
 }

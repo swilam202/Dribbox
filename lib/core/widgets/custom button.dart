@@ -1,5 +1,6 @@
-import 'package:dribbox/core/resources/color%20manager.dart';
 import 'package:flutter/material.dart';
+
+import '../resources/color manager.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
@@ -7,8 +8,10 @@ class CustomButton extends StatelessWidget {
     required this.child,
     required this.onPressed,
   });
+
   final Widget child;
   final Function()? onPressed;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -16,7 +19,8 @@ class CustomButton extends StatelessWidget {
         Expanded(
           child: ElevatedButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(ColorManager.blueColor),
+              backgroundColor:
+                  MaterialStateProperty.all(ColorManager.blueColor),
               shape: MaterialStateProperty.all(
                 RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),

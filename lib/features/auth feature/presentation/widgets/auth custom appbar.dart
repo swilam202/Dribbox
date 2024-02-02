@@ -1,7 +1,6 @@
-import 'package:dribbox/core/resources/folders.dart';
-import 'package:dribbox/core/resources/style%20manager.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/resources/style manager.dart';
 
 PreferredSizeWidget? authCustomAppBar(String text) {
   return AppBar(

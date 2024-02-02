@@ -1,10 +1,9 @@
-import 'package:dribbox/core/services/storage.dart';
-import 'package:dribbox/core/utils/constants.dart';
-import 'package:dribbox/core/utils/custom%20navigation.dart';
-import 'package:dribbox/features/home%20feature/presentation/pages/home%20page.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/services/storage.dart';
+import '../../../../core/utils/custom navigation.dart';
 import '../../../auth feature/presentation/pages/on boarding page.dart';
+import '../../../home feature/presentation/pages/home page.dart';
 import '../widgets/splash body.dart';
 
 class SplashPage extends StatefulWidget {
@@ -50,14 +49,16 @@ class _SplashPageState extends State<SplashPage>
       curve: Curves.elasticInOut,
     );
     _animationController.forward().then(
-          (_) => Future.delayed(const Duration(seconds: 2),
-              () async{
-                String? value = await readData('phone');
+          (_) => Future.delayed(
+            const Duration(seconds: 2),
+            () async {
+              String? value = await readData('phone');
 
-                CustomNavigation.pushReplacement(
-                  value == null ? const OnBoardingPage():HomePage(),
-                );
-              },),
+              CustomNavigation.pushReplacement(
+                value == null ? const OnBoardingPage() : HomePage(),
+              );
+            },
+          ),
         );
   }
 }

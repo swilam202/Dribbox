@@ -1,4 +1,3 @@
-import 'package:dribbox/core/services/storage.dart';
 import 'package:flutter/material.dart';
 
 abstract class FolderProperties {
@@ -10,8 +9,6 @@ abstract class FolderProperties {
 }
 
 class APKFolderProperties extends FolderProperties {
-
-
   @override
   Color get color => Colors.green;
 
@@ -26,12 +23,9 @@ class APKFolderProperties extends FolderProperties {
 
   @override
   IconData get icon => Icons.android;
-
 }
 
 class ProgrammingFolderProperties extends FolderProperties {
-
-
   @override
   Color get color => Colors.indigo;
 
@@ -60,8 +54,6 @@ class ProgrammingFolderProperties extends FolderProperties {
         'yml',
         'yaml',
         'sql',
-
-
       ];
 
   @override
@@ -69,8 +61,6 @@ class ProgrammingFolderProperties extends FolderProperties {
 }
 
 class FilesFolderProperties extends FolderProperties {
-
-
   @override
   Color get color => Colors.amber;
 
@@ -92,8 +82,6 @@ class FilesFolderProperties extends FolderProperties {
         'xls',
         'csv',
         'rtf',
-
-
       ];
 
   @override
@@ -101,8 +89,6 @@ class FilesFolderProperties extends FolderProperties {
 }
 
 class AudioFolderProperties extends FolderProperties {
-
-
   @override
   Color get color => Colors.orange;
 
@@ -126,8 +112,6 @@ class AudioFolderProperties extends FolderProperties {
 }
 
 class VideosFolderProperties extends FolderProperties {
-
-
   @override
   Color get color => Colors.blue;
 
@@ -145,8 +129,7 @@ class VideosFolderProperties extends FolderProperties {
         'mov',
         'wmv',
         'flv',
-         'm4v',
-
+        'm4v',
       ];
 
   @override
@@ -154,8 +137,6 @@ class VideosFolderProperties extends FolderProperties {
 }
 
 class ImagesFolderProperties extends FolderProperties {
-
-
   @override
   Color get color => Colors.red;
 
@@ -168,13 +149,12 @@ class ImagesFolderProperties extends FolderProperties {
   @override
   List<String> get types => [
         'jpeg',
-    'jpg',
+        'jpg',
         'png',
         'gif',
         'psd',
         'svg',
         'webp',
-
       ];
 
   @override
@@ -182,8 +162,6 @@ class ImagesFolderProperties extends FolderProperties {
 }
 
 class ArchiveFolderProperties extends FolderProperties {
-
-
   @override
   Color get color => Colors.teal;
 
@@ -205,8 +183,6 @@ class ArchiveFolderProperties extends FolderProperties {
 }
 
 class OtherFolderProperties extends FolderProperties {
-
-
   @override
   Color get color => Colors.grey;
 

@@ -1,23 +1,23 @@
-import 'package:dribbox/features/auth%20feature/presentation/controller/auth%20controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/resources/color manager.dart';
-
+import '../controller/auth controller.dart';
 
 class OTPField extends StatelessWidget {
   const OTPField({
     super.key,
     required this.isLast,
   });
+
   final bool isLast;
+
   @override
   Widget build(BuildContext context) {
     final AuthController authController = Get.put(AuthController());
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.13,
       child: TextFormField(
-
         maxLength: 1,
         autofocus: true,
         onSaved: (pin) {
@@ -30,7 +30,6 @@ class OTPField extends StatelessWidget {
             else
               FocusScope.of(context).nextFocus();
           }
-
         },
         keyboardType: TextInputType.number,
         textAlign: TextAlign.center,

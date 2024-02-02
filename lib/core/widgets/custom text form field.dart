@@ -27,13 +27,17 @@ class CustomTextFormField extends StatelessWidget {
       validator: validator,
       keyboardType: textInputType,
       decoration: InputDecoration(
-        enabledBorder:OutlineInputBorder(
+        enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
-          borderSide: const BorderSide(color: ColorManager.blackColor,),
+          borderSide: const BorderSide(
+            color: ColorManager.blackColor,
+          ),
         ),
         focusedBorder: UnderlineInputBorder(
           borderRadius: BorderRadius.circular(20),
-          borderSide: const BorderSide(color: ColorManager.blackColor,),
+          borderSide: const BorderSide(
+            color: ColorManager.blackColor,
+          ),
         ),
         labelText: labelText,
         prefixIcon: prefixIcon == null

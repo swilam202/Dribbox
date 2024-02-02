@@ -1,16 +1,15 @@
-import 'package:dribbox/core/resources/color%20manager.dart';
-import 'package:dribbox/core/resources/folders.dart';
-import 'package:dribbox/core/widgets/loading%20state.dart';
-import 'package:dribbox/features/home%20feature/presentation/controller/home%20page%20controller.dart';
-import 'package:dribbox/features/home%20feature/presentation/controller/home%20page%20controller/home%20page%20state.dart';
-import 'package:dribbox/features/home%20feature/presentation/widgets/file%20item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
+import '../../../../core/resources/color manager.dart';
+import '../../../../core/resources/folders.dart';
+import '../../../../core/widgets/loading state.dart';
 import '../controller/folder files controller/folder file states.dart';
 import '../controller/folder files controller/folder files cubit.dart';
 import '../controller/home page controller/home page cubit.dart';
+import '../controller/home page controller/home page state.dart';
+import '../widgets/file item.dart';
 import '../widgets/home page custom app bar.dart';
 
 class FolderPage extends StatefulWidget {
@@ -32,15 +31,9 @@ class _FolderPageState extends State<FolderPage> {
 
   @override
   Widget build(BuildContext context) {
-    //final HomePageController homePageController = Get.put(HomePageController());
     return Scaffold(
       appBar: homePageCustomAppBar(widget.folder),
-      body: BlocConsumer<FolderFilesCubit, FolderFilesState>(
-        listener: (context, state) async {
-          if (state is HomePageDeleteSuccessState) {
-            // await BlocProvider.of<FolderFilesCubit>(context).getItemsByFolder(widget.folder);
-          }
-        },
+      body: BlocBuilder<FolderFilesCubit, FolderFilesState>(
         builder: (context, state) {
           if (state is FolderFilesSuccessState) {
             return ListView.builder(
@@ -76,35 +69,17 @@ class _FolderPageState extends State<FolderPage> {
             backgroundColor: widget.folder.color,
             shape: CircleBorder(),
             onPressed: (state is HomePageLoadingState)
-                ?null
+                ? null
                 : () async {
-            await BlocProvider.of<HomePageCubit>(context)
-                .uploadFileByFolder(context, widget.folder);
-          },
+                    await BlocProvider.of<HomePageCubit>(context)
+                        .uploadFileByFolder(context, widget.folder);
+                  },
             child: (state is HomePageLoadingState)
                 ? CircularProgressIndicator(color: Colors.white)
                 : Icon(Icons.cloud_upload, color: ColorManager.whiteColor),
           );
         },
       ),
-
-      /*FloatingActionButton(
-        onPressed:  () async{
-    await BlocProvider.of<HomePageCubit>(context).uploadFileByFolder(context,widget.folder);
-    },
-        backgroundColor: widget.folder.color,
-        shape: CircleBorder(),
-        child:  BlocBuilder<HomePageCubit,HomePageState>(
-          builder: (context, state) {
-            if(state is HomePageLoadingState){
-              return CircularProgressIndicator(color: Colors.white,);
-            }else{
-              return Icon(Icons.cloud_upload);
-            }
-          }
-          ,
-        ),
-      ),*/
     );
   }
 }

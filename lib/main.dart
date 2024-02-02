@@ -1,28 +1,17 @@
-import 'package:dribbox/core/resources/color%20manager.dart';
-import 'package:dribbox/core/resources/font%20weight%20manager.dart';
-import 'package:dribbox/core/resources/style%20manager.dart';
-import 'package:dribbox/core/services/service%20locator.dart';
-import 'package:dribbox/core/services/storage.dart';
-import 'package:dribbox/core/widgets/custom%20dialog.dart';
-import 'package:dribbox/features/auth%20feature/presentation/pages/otp%20form.dart';
-import 'package:dribbox/features/home%20feature/presentation/controller/folder%20files%20controller/folder%20files%20cubit.dart';
-import 'package:dribbox/features/home%20feature/presentation/controller/home%20page%20controller/home%20page%20cubit.dart';
-import 'package:dribbox/features/home%20feature/presentation/controller/load%20all%20data%20controller/load%20all%20data%20cubit.dart';
-import 'package:dribbox/features/storage%20details/presentation/controller/storage%20details%20cubit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
-import 'core/utils/constants.dart';
-import 'features/auth feature/presentation/pages/on boarding page.dart';
-import 'features/folder feature/presentation/pages/folder page.dart';
-import 'features/home feature/presentation/pages/home page.dart';
+import 'core/resources/color manager.dart';
+import 'core/services/service locator.dart';
+import 'core/widgets/custom dialog.dart';
+import 'features/home feature/presentation/controller/folder files controller/folder files cubit.dart';
+import 'features/home feature/presentation/controller/home page controller/home page cubit.dart';
+import 'features/home feature/presentation/controller/load all data controller/load all data cubit.dart';
 import 'features/splash feature/presentation/pages/splash page.dart';
-import 'features/storage details/presentation/pages/storage details page.dart';
+import 'features/storage details/presentation/controller/storage details cubit.dart';
 import 'firebase_options.dart';
-
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,31 +27,30 @@ class Dribbox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-
-       MultiBlocProvider(
-        providers: [
-          BlocProvider<FolderFilesCubit>(create: (context)=>FolderFilesCubit()),
-          BlocProvider<HomePageCubit>(create: (context)=>HomePageCubit()),
-          BlocProvider<StorageDetailsCubit>(create: (context)=>StorageDetailsCubit()),
-          BlocProvider<LoadAllDataCubit>(create: (context)=>LoadAllDataCubit()..loadAllData()),
-        ],
-        child: GetMaterialApp(
-          theme: ThemeData(
-            appBarTheme: const AppBarTheme(
-              backgroundColor: ColorManager.whiteColor,
-            ),
-            scaffoldBackgroundColor: ColorManager.whiteColor,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<FolderFilesCubit>(create: (context) => FolderFilesCubit()),
+        BlocProvider<HomePageCubit>(create: (context) => HomePageCubit()),
+        BlocProvider<StorageDetailsCubit>(
+            create: (context) => StorageDetailsCubit()),
+        BlocProvider<LoadAllDataCubit>(
+            create: (context) => LoadAllDataCubit()..loadAllData()),
+      ],
+      child: GetMaterialApp(
+        theme: ThemeData(
+          appBarTheme: const AppBarTheme(
+            backgroundColor: ColorManager.whiteColor,
           ),
-          home: PopScope(
-            canPop: false,
-            onPopInvoked: (val) async {
-              await showCustomDialog();
-            },
-            child: const SplashPage(),
-          ),
+          scaffoldBackgroundColor: ColorManager.whiteColor,
         ),
-      );
-
+        home: PopScope(
+          canPop: false,
+          onPopInvoked: (val) async {
+            await showCustomDialog();
+          },
+          child: const SplashPage(),
+        ),
+      ),
+    );
   }
 }

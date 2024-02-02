@@ -1,24 +1,29 @@
-import 'package:dribbox/core/resources/folders.dart';
-import 'package:dribbox/core/resources/style%20manager.dart';
-import 'package:dribbox/core/utils/custom%20navigation.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/resources/folders.dart';
+import '../../../../core/resources/style manager.dart';
+import '../../../../core/utils/custom navigation.dart';
 
 PreferredSizeWidget? homePageCustomAppBar(FolderProperties folder) {
   return AppBar(
     backgroundColor: folder.color.withOpacity(0.2),
     centerTitle: true,
     leading: IconButton(
-      onPressed: (){
+      onPressed: () {
         CustomNavigation.pop();
       },
-      icon:
-      Icon(Icons.arrow_back_ios,color: folder.color,),
+      icon: Icon(
+        Icons.arrow_back_ios,
+        color: folder.color,
+      ),
     ),
     title: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(folder.icon,color: folder.color,),
+        Icon(
+          folder.icon,
+          color: folder.color,
+        ),
         SizedBox(width: 10),
         Text(
           folder.name,

@@ -10,7 +10,7 @@ String firebaseExceptionCodes(String code) {
       return 'you tried too many times, please try again later';
     case 'network-request-failed':
       return 'Connection error, please check your connection';
-      case 'invalid-verification-code':
+    case 'invalid-verification-code':
       return 'The code you entered is invilid please try again';
     default:
       return code;

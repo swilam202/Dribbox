@@ -5,5 +5,9 @@ class Section {
   final num value;
   final Color color;
 
-  Section(this.title, this.value, this.color);
+  Section(
+    this.title,
+    this.value,
+    this.color,
+  );
 }

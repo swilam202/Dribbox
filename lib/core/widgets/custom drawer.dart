@@ -1,3 +1,5 @@
+import 'package:dribbox/core/services/storage.dart';
+import 'package:dribbox/features/auth%20feature/presentation/pages/on%20boarding%20page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 
@@ -6,9 +8,8 @@ import '../../features/storage details/presentation/pages/storage details page.d
 import '../utils/constants.dart';
 import '../utils/custom navigation.dart';
 
-
 class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({super.key,required this.child});
+  const CustomDrawer({super.key, required this.child});
 
   final Widget child;
 
@@ -16,7 +17,7 @@ class CustomDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     final _advancedDrawerController = AdvancedDrawerController();
 
-    return  AdvancedDrawer(
+    return AdvancedDrawer(
       backdrop: Container(
         width: double.infinity,
         height: double.infinity,
@@ -33,20 +34,10 @@ class CustomDrawer extends StatelessWidget {
       animationDuration: const Duration(milliseconds: 300),
       animateChildDecoration: true,
       rtlOpening: false,
-      // openScale: 1.0,
       disabledGestures: false,
       childDecoration: const BoxDecoration(
-        // NOTICE: Uncomment if you want to add shadow behind the page.
-        // Keep in mind that it may cause animation jerks.
-        // boxShadow: <BoxShadow>[
-        //   BoxShadow(
-        //     color: Colors.black12,
-        //     blurRadius: 0.0,
-        //   ),
-        // ],
         borderRadius: const BorderRadius.all(Radius.circular(16)),
       ),
-
       drawer: SafeArea(
         child: ListTileTheme(
           textColor: Colors.white,
@@ -59,7 +50,6 @@ class CustomDrawer extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.4,
                 child: Image.asset(
                   kLogo,
-
                 ),
               ),
               ListTile(
@@ -72,19 +62,22 @@ class CustomDrawer extends StatelessWidget {
               ListTile(
                 onTap: () {
                   CustomNavigation.pushReplacement(StorageDetailsPage());
-
                 },
                 leading: Icon(Icons.storage),
                 title: Text('Storage'),
               ),
-
+              ListTile(
+                onTap: () async {
+                  await deleteData('phone');
+                  CustomNavigation.pushReplacement(OnBoardingPage());
+                },
+                leading: Icon(Icons.logout),
+                title: Text('Logout'),
+              ),
             ],
           ),
         ),
       ),
-
-
-
       child: child,
     );
   }

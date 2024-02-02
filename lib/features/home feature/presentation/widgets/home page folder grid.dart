@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
@@ -12,7 +10,6 @@ class HomePageFolderGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return GridView.builder(
       shrinkWrap: true,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -28,9 +25,12 @@ class HomePageFolderGrid extends StatelessWidget {
           position: index,
           columnCount: 2,
           child: SlideAnimation(
-              verticalOffset: 500,
-              horizontalOffset: -500,
-              child: FadeInAnimation(child: HomePageFolder(sl<List<FolderProperties>>()[index]),),),
+            verticalOffset: 500,
+            horizontalOffset: -500,
+            child: FadeInAnimation(
+              child: HomePageFolder(sl<List<FolderProperties>>()[index]),
+            ),
+          ),
         );
       },
     );

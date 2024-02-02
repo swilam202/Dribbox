@@ -1,4 +1,4 @@
-import 'package:dribbox/features/home%20feature/domain/entites/uploaded%20file%20properties.dart';
+import '../../domain/entites/uploaded file properties.dart';
 
 class UploadedFilePropertiesModel extends UploadedFileProperties {
   UploadedFilePropertiesModel(

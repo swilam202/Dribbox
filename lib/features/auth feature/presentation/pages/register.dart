@@ -1,17 +1,12 @@
-import 'package:dribbox/features/auth%20feature/presentation/controller/auth%20controller.dart';
-import 'package:dribbox/features/auth%20feature/presentation/widgets/auth%20custom%20appbar.dart';
-import 'package:dribbox/features/home%20feature/presentation/pages/home%20page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 
 import '../../../../core/resources/color manager.dart';
 import '../../../../core/resources/style manager.dart';
-import '../../../../core/services/service locator.dart';
-import '../../../../core/utils/custom navigation.dart';
 import '../../../../core/widgets/custom button.dart';
 import '../../../../core/widgets/custom text form field.dart';
-
+import '../controller/auth controller.dart';
+import '../widgets/auth custom appbar.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
@@ -19,7 +14,7 @@ class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthController authController = Get.put(AuthController());
-    return  Scaffold(
+    return Scaffold(
       appBar: authCustomAppBar('Register'),
       body: Center(
         child: SingleChildScrollView(
@@ -30,28 +25,23 @@ class RegisterPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-
-                 CustomTextFormField(
+                CustomTextFormField(
                   controller: authController.phoneController,
                   textInputType: TextInputType.phone,
                   labelText: 'Phone',
                   prefixIcon: Icons.phone,
-                   validator: (value){
-                    if(value == null || value.length != 11){
+                  validator: (value) {
+                    if (value == null || value.length != 11) {
                       return 'Please enter a valid phone number';
-                    }
-                    else{
+                    } else {
                       return null;
                     }
-                   },
+                  },
                 ),
-
                 const SizedBox(height: 80),
                 CustomButton(
                   onPressed: () async {
                     if (authController.loginKey.currentState!.validate()) {
-                      Logger().w('log: ${authController.phoneController.text}');
-
                       await authController.registrationFunction();
                     }
                   },
@@ -68,7 +58,6 @@ class RegisterPage extends StatelessWidget {
           ),
         ),
       ),
-
     );
   }
 }

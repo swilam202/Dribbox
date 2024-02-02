@@ -1,6 +1,7 @@
-import 'package:dribbox/core/resources/color%20manager.dart';
-import 'package:dribbox/core/resources/font%20weight%20manager.dart';
 import 'package:flutter/material.dart';
+
+import 'color manager.dart';
+import 'font weight manager.dart';
 
 class StyleManager {
   static TextStyle bigTextStyle({

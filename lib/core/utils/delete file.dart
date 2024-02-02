@@ -1,10 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dribbox/core/models/folder%20items.dart';
-import 'package:dribbox/core/widgets/custom%20toast.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 import '../../features/home feature/data/model/folder items.dart';
 import '../services/storage.dart';
+import '../widgets/custom toast.dart';
 import 'toast status.dart';
 
 Future<void> deleteFileFunction(FolderItems file) async {
@@ -20,7 +19,7 @@ Future<void> deleteFileFunction(FolderItems file) async {
     List files = (documentSnapshot.data()!)['files'];
     files.removeWhere((element) => element['name'] == file.name);
 
-     await user.set({
+    await user.set({
       'files': files,
     });
     await customToast('File deleted successfully', ToastStatus.success);

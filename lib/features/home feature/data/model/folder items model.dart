@@ -1,6 +1,3 @@
-
-
-import '../../../../core/models/folder items.dart';
 import 'folder items.dart';
 
 class FolderItemsModel extends FolderItems {
@@ -8,7 +5,7 @@ class FolderItemsModel extends FolderItems {
     super.name,
     super.url,
     super.size,
-      super.type,
+    super.type,
   );
 
   factory FolderItemsModel.fromMap(Map<String, dynamic> map) {
