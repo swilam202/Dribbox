@@ -17,7 +17,7 @@ class SplashBody extends StatelessWidget {
           SizedBox(
             height: 200,
             child: AspectRatio(
-              aspectRatio: 4 / 5,
+              aspectRatio: 1,
               child: Image.asset(
                 kCloudGif,
                 fit: BoxFit.fill,

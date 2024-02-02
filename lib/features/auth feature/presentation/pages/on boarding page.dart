@@ -21,10 +21,10 @@ class OnBoardingPage extends StatelessWidget {
 
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.3,
+                height: MediaQuery.of(context).size.height * 0.25,
                 child: AspectRatio(
                   aspectRatio: 1,
-                  child: Image.asset(kLogo),
+                  child: Image.asset(kLogo,fit: BoxFit.fill,),
                 ),
               ),
               const SizedBox(height: 30),

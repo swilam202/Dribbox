@@ -39,7 +39,7 @@ class _StorageDetailsPageState extends State<StorageDetailsPage> {
       Section('Files', 1000, Colors.amber),
     ];*/
     return CustomDrawer(child: Scaffold(
-      /* appBar: AppBar(
+       appBar: AppBar(
         title: Text(
           'Storage details',
           style: StyleManager.bigTextStyle(
@@ -48,12 +48,9 @@ class _StorageDetailsPageState extends State<StorageDetailsPage> {
           ),
         ),
         centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
-          onPressed: () {},
-        ),
+        automaticallyImplyLeading: false,
         elevation: 0,
-      ),*/
+      ),
         body: BlocBuilder<StorageDetailsCubit,StorageDetailsState>(
           builder: (context, state) {
             if(state is StorageDetailsSuccessState){
