@@ -36,7 +36,7 @@ class OTPForm extends StatelessWidget {
                   text: 'Enter code that we have sent to your number ',
                   children: [
                     TextSpan(
-                      text: '+2${authController.phoneController.text}',
+                      text: '${authController.phoneController.text}',
                       style: StyleManager.smallTextStyle(
                         color: ColorManager.blackColor,
                         fontSize: 16,
