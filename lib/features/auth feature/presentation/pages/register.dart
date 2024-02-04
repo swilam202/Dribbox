@@ -31,7 +31,7 @@ class RegisterPage extends StatelessWidget {
                   labelText: 'Phone',
                   prefixIcon: Icons.phone,
                   validator: (value) {
-                    if (value == null || value.length != 11) {
+                    if (value == null || value.length < 5) {
                       return 'Please enter a valid phone number';
                     } else {
                       return null;

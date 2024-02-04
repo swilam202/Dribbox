@@ -27,7 +27,7 @@ class AuthController extends GetxController {
   Future<void> registrationFunction() async {
     try {
       await auth.verifyPhoneNumber(
-        phoneNumber: '${phoneController.text}',
+        phoneNumber: '{phoneController.text}',
         verificationCompleted: (PhoneAuthCredential credential) async {
           await auth.signInWithCredential(credential);
         },
@@ -55,7 +55,7 @@ class AuthController extends GetxController {
       );
       await auth.signInWithCredential(credential);
 
-      writeData('phone', '${phoneController.text}');
+      writeData('phone', '{phoneController.text}');
 
       await createFirestoreUser();
       CustomNavigation.pushReplacement(HomePage());
@@ -70,7 +70,7 @@ class AuthController extends GetxController {
     DocumentSnapshot<Map<String, dynamic>> document = await FirebaseFirestore
         .instance
         .collection('users')
-        .doc('+2${phoneController.text}')
+        .doc('{phoneController.text}')
         .get();
 
     if (!(document.exists)) {
